@@ -3,13 +3,14 @@
 
 # Funkcje zaimplementowane w aplikacji
 - node.js express API używające danych z SQLite
--  wyświetlenie listy wszystkich wydatków/przychodów,
+- wyświetlenie listy wszystkich wydatków/przychodów,
 - dodanie wydatków/przychodów na listę, 
 - edycję wydatku/przychodu na liście, 
--  usunięcie wydatku/przychodu z listy, 
+- usunięcie wydatku/przychodu z listy, 
 - wyświetlenie w formie wykresu wydatków z danego miesiąca i/lub kategorii, 
 - nadanie wydatkom priorytetu,
-- sortowanie wydatków (np. po kategorii/koncie/walucie).  
+- sortowanie wydatków (np. po kategorii/koncie/walucie).
+- darkmode, ukrywanie wartości
 
 # API:
 

@@ -1,0 +1,24 @@
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 32%;
+    background-color: #6730E4;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+nav a {
+    
+    color: #46D2BC;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav a.active {
+    background-color: #3cae9d;
+    color: #6730E4;
+}

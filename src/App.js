@@ -1,12 +1,29 @@
-import Test from './Test';
-import './App.css';
+import { useContext, useEffect } from 'react';
+import { Route, HashRouter as Router, Routes } from 'react-router-dom';
 
-function App() {
+import { Nav } from './components/';
+import Add from './pages/Add';
+import Charts from './pages/Charts';
+import Home from './pages/Home';
+import Settings from './pages/Settings';
+
+import './css/App.css';
+
+const App = () => {
+
   return (
     <div className="App">
-      123
-      poniżej wynik z api
-      <Test />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/charts" element={<Charts />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
+        <Nav />
+      </Router>
+
+
     </div>
   );
 }

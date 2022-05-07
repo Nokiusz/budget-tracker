@@ -1,0 +1,7 @@
+.radio-btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 32%;
+    flex-direction: column;
+}
