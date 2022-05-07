@@ -49,14 +49,14 @@ router.post("/", (req, res, next) => {
 
 /* DELETE */
 router.delete("/:id", (req, res) => {
-    const query = `DELETE FROM 'transaction' WHERE id = ${req.params.id}`;
+    const query = `DELETE FROM 'currency' WHERE id = ${req.params.id}`;
     db.all(query, (err, rows) => {
         if (err) {
             console.error(err.message);
             res.status(400).json({ "error": err.message })
         }
         res.status(201).json({
-            "message": `Transaction id: ${req.params.id} deleted`,
+            "message": `Currency id: ${req.params.id} deleted`,
         })
     });
 });
