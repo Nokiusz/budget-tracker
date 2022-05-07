@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../db');
 
 /* PRIORITIES */
-
+/* GET */
 router.get("/:id", (req, res) => {
     const query = `SELECT * FROM 'priority' WHERE id = ${req.params.id}`;
     db.all(query, (err, rows) => {

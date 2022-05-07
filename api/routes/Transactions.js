@@ -58,7 +58,7 @@ router.post("/", (req, res, next) => {
                 res.status(400).json({ "error": err.message })
             }
             res.status(201).json({
-                "message": `Transaction id: ${req.params.id} added`,
+                "message": `Transaction added`,
             })
         });
 });

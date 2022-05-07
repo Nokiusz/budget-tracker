@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../db');
 
 /* TYPES */
-
+/* GET */
 router.get("/:id", (req, res) => {
     const query = `SELECT * FROM 'type' WHERE id = ${req.params.id}`;
     db.all(query, (err, rows) => {
