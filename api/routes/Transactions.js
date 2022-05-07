@@ -78,5 +78,20 @@ router.delete("/:id", (req, res) => {
 });
 
 /* PUT */
+router.put("/:id", (req, res, next) => {
+    console.log("req:", req.body);
+    const { description, value, categoryId, currencyId, typeId, priorityId, date } = req.body;
+    db.run(`UPDATE 'transaction' set description = ?, value = ?, categoryId = ?, currencyId = ?, typeId = ?, priorityId = ?, date = ? WHERE id = ?`,
+        [description, value, categoryId, currencyId, typeId, priorityId, date, req.params.id],
 
+        (err, result) => {
+            if (err) {
+                console.error(err.message);
+                res.status(400).json({ "error": err.message })
+            }
+            res.status(201).json({
+                "message": `Transaction updated`,
+            })
+        });
+});
 module.exports = router;

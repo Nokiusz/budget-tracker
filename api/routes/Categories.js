@@ -72,5 +72,20 @@ router.delete("/:id", (req, res) => {
 });
 
 /* PUT */
+router.put("/:id", (req, res, next) => {
+    console.log("req:", req.body);
+    const { name } = req.body;
+    db.run(`UPDATE 'category' set name = ? WHERE id = ?`,
+        [name, req.params.id],
 
+        (err, result) => {
+            if (err) {
+                console.error(err.message);
+                res.status(400).json({ "error": err.message })
+            }
+            res.status(201).json({
+                "message": `Category updated`,
+            })
+        });
+});
 module.exports = router;
