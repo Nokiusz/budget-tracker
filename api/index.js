@@ -6,11 +6,14 @@ const categoriesRoute = require('./routes/Categories');
 const currenciesRoute = require('./routes/Currencies');
 const typesRoute = require('./routes/Types');
 const prioritiesRoute = require('./routes/Priorities');
-/* */
+
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger-output.json')
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 const PORT = 5000;
 
 app.get('/', (req, res) => {
@@ -22,6 +25,8 @@ app.use('/api/categories', categoriesRoute);
 app.use('/api/currencies', currenciesRoute);
 app.use('/api/types', typesRoute);
 app.use('/api/priorities', prioritiesRoute);
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

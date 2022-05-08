@@ -5,16 +5,20 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "watch": "nodemon --exec npm start"
+    "watch": "nodemon --exec npm start",
+    "sa": "node ./swagger.js"
   },
   "author": "Nokiusz",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "sqlite3": "^5.0.4"
+    "sqlite3": "^5.0.4",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "swagger-autogen": "^2.21.1"
   }
 }
