@@ -7,6 +7,8 @@
 git clone https://github.com/Nokiusz/budget-tracker.git
 cd budget-tracker
 npm install
+cd api
+npm install
 ```
 
 # Zbudowanie aplikacji
