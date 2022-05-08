@@ -1,7 +1,11 @@
-import React, { useEffect, useContext } from 'react'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { Avatar, Button, List as ListAnt, Tag } from 'antd';
+import React, { useContext, useEffect } from 'react'
+
 import { GlobalContext } from '../context/Context';
-import { List as ListAnt, Avatar, Tag, Button } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+
+import 'antd/dist/antd.css';
+import 'antd/dist/antd.less'
 
 const List = () => {
     const { transactionsData, showValues } = useContext(GlobalContext);
@@ -39,50 +43,49 @@ const List = () => {
     }
 
     return (
-        <>
 
-            <ListAnt
-                itemLayout="horizontal"
-                dataSource={transactionsData}
+        <ListAnt
+            itemLayout="horizontal"
+            dataSource={transactionsData}
 
-                renderItem={item => (
+            renderItem={item => (
 
-                    <ListAnt.Item
-                        actions={[
-                            <EditOutlined key="edit" onClick={() => handleEdit(item)} />,
-                            <DeleteOutlined key="delete" onClick={() => handleDelete(item)} />,
-                        ]}
-                    >
+                <ListAnt.Item
+                    actions={[
+                        <EditOutlined key="edit" onClick={() => handleEdit(item)} />,
+                        <DeleteOutlined key="delete" onClick={() => handleDelete(item)} />,
+                    ]}
+                >
 
-                        <ListAnt.Item.Meta
-                            avatar={<img
-                                width={32}
-                                height={32}
-                                src={`${ImgSrc}${item.category}.png`}
-                                alt={item.category}
-                                onError={event => {
-                                    event.target.src = defaultImgSrc
-                                    event.onerror = null
-                                }}
-                            />}
-                            title={`${showValues ? item.value : `??? | ${item.date}`} 
+                    <ListAnt.Item.Meta
+                        avatar={<img
+                            width={32}
+                            height={32}
+                            src={`${ImgSrc}${item.category}.png`}
+                            alt={item.category}
+                            onError={event => {
+                                event.target.src = defaultImgSrc
+                                event.onerror = null
+                            }}
+                        />}
+                        title={`${showValues ? item.value : `??? | ${item.date}`} 
                             ${showValues ? `${item.currencyAcronym} | ${item.date}` :
-                                    `??? | ${item.date}`} `}
-                            description={item.description}
+                                `??? | ${item.date}`} `}
+                        description={item.description}
 
-                        />
-                        <div className="tags">
-                            <Tag color={getPriorityColor(item.priority)}>{item.priority}</Tag>
-                            <Tag color={item.type === 'expense' ? 'red' : 'green'}>{item.type}</Tag>
-                        </div>
+                    />
+                    <div className="tags">
+                        <Tag color={getPriorityColor(item.priority)}>{item.priority}</Tag>
+                        <Tag color={item.type === 'expense' ? 'red' : 'green'}>{item.type}</Tag>
+                    </div>
 
 
-                    </ListAnt.Item>
-                )
-                }
-            />
+                </ListAnt.Item>
+            )
+            }
+        />
 
-        </>
+
     )
 }
 

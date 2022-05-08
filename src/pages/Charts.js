@@ -19,9 +19,9 @@ const Charts = () => {
     };
 
     return (
-        <>
+        <div className='Charts'>
             <Pie data={data} />
-        </>
+        </div>
     )
 }
 

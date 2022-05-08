@@ -25,30 +25,32 @@ const Settings = () => {
     }
 
     return (
-        <div className='radio-btns'>
-            Dark Mode
-            <label className="switch">
-                <input
-                    name='darkMode'
-                    type="checkbox"
-                    checked={darkMode}
-                    onChange={(e) => handleChange(e)}
-                />
+        <div className="Settings">
+            <div className='radio-btns'>
+                Dark Mode
+                <label className="switch">
+                    <input
+                        name='darkMode'
+                        type="checkbox"
+                        checked={darkMode}
+                        onChange={(e) => handleChange(e)}
+                    />
 
-                <span className="slider"></span>
-            </label>
+                    <span className="slider"></span>
+                </label>
 
-            Show values
-            <label className="switch">
-                <input
-                    name='showValues'
-                    type="checkbox"
-                    checked={showValues}
-                    onChange={(e) => handleChange(e)}
-                />
-                <span className="slider"></span>
-            </label>
+                Show values
+                <label className="switch">
+                    <input
+                        name='showValues'
+                        type="checkbox"
+                        checked={showValues}
+                        onChange={(e) => handleChange(e)}
+                    />
+                    <span className="slider"></span>
+                </label>
 
+            </div>
         </div>
     )
 }

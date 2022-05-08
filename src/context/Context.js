@@ -4,6 +4,10 @@ export const GlobalContext = createContext();
 
 export const ContextProvider = ({ children }) => {
     const [transactionsData, setTransactionsData] = useState([]);
+    const [categoriesData, setCategoriesData] = useState([]);
+    const [currenciesData, setCurrenciesData] = useState([]);
+    const [prioritiesData, setPrioritiesData] = useState([]);
+    const [typesData, setTypesData] = useState([]);
     const [incomeTotal, setIncomeTotal] = useState(0);
     const [expenseTotal, setExpenseTotal] = useState(0);
     const [showValues, setShowValues] = useState(true);
@@ -28,8 +32,49 @@ export const ContextProvider = ({ children }) => {
         setTransactionsData(dataJson.rows);
     }
 
+    const fetchCategories = async () => {
+        const data = await fetch(`${BASE_URL}/Categories`);
+        const dataJson = await data.json();
+        setCategoriesData(dataJson.rows);
+    }
+
+    const fetchTypes = async () => {
+        const data = await fetch(`${BASE_URL}/Types`);
+        const dataJson = await data.json();
+        setTypesData(dataJson.rows);
+    }
+
+    const fetchCurrencies = async () => {
+        const data = await fetch(`${BASE_URL}/Currencies`);
+        const dataJson = await data.json();
+        setCurrenciesData(dataJson.rows);
+    }
+
+    const fetchPriorities = async () => {
+        const data = await fetch(`${BASE_URL}/Priorities`);
+        const dataJson = await data.json();
+        setPrioritiesData(dataJson.rows);
+    }
+
+
     useEffect(() => {
         fetchData();
+    }, [])
+
+    useEffect(() => {
+        fetchCategories();
+    }, [])
+
+    useEffect(() => {
+        fetchTypes();
+    }, [])
+
+    useEffect(() => {
+        fetchCurrencies();
+    }, [])
+
+    useEffect(() => {
+        fetchPriorities();
     }, [])
 
     useEffect(() => {
@@ -52,8 +97,17 @@ export const ContextProvider = ({ children }) => {
 
 
     const providerValue = {
+        BASE_URL,
         transactionsData,
         setTransactionsData,
+        categoriesData,
+        setCategoriesData,
+        typesData,
+        setTypesData,
+        currenciesData,
+        setCurrenciesData,
+        prioritiesData,
+        setPrioritiesData,
         incomeTotal,
         setIncomeTotal,
         expenseTotal,
