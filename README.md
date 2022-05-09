@@ -44,6 +44,7 @@ npm run watch
 GET    "/api/transactions" => zwraca obiekt zawierający wszystkie tranzakcje
 GET    "/api/transactions/:id" => zwraca pojedyńczą tranzakcję o danym id
 GET    "/api/transactions/list" => zwraca listę tranzakcji z polami 'id' podmienionymi na odpowiednie wartości z tabel słownikowych
+GET    "/api/transactions/list/:id" => zwraca  tranzakcję o danym id z polami 'id' podmienionymi na odpowiednie wartości z tabel słownikowych
 POST   "/api/transactions" => dodaje tranzakcje
 DELETE "/api/transactions/:id" => usuwa tranzakcje o danym id
 PUT    "/api/transactions/:id" => aktualizuje tranzakcje o danym id
