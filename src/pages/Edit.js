@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import { GlobalContext } from "../context/Context";
 const Edit = () => {
   const { id } = useParams();
-  const { transactionData, setTransactionData, fetchTransaction } =
-    useContext(GlobalContext);
+  const { transactionData, fetchTransaction } = useContext(GlobalContext);
 
   useEffect(() => {
     fetchTransaction(id);

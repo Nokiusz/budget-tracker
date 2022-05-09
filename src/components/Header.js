@@ -1,16 +1,22 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from "react";
 
-import { GlobalContext } from '../context/Context';
+import { GlobalContext } from "../context/Context";
 
 const Header = () => {
-    const { transactionsData, incomeTotal, setIncomeTotal, expenseTotal, setExpenseTotal } = useContext(GlobalContext);
+  const {
+    transactionsData,
+    incomeTotal,
+    setIncomeTotal,
+    expenseTotal,
+    setExpenseTotal,
+  } = useContext(GlobalContext);
 
-    return (
-        <div>
-            <p>{incomeTotal}</p>
-            <p>{expenseTotal}</p>
-        </div>
-    )
-}
+  return (
+    <div>
+      <p>{incomeTotal}</p>
+      <p>{expenseTotal}</p>
+    </div>
+  );
+};
 
-export default Header
+export default Header;

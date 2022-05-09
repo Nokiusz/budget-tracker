@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
-import { Header, List } from '../components'
+import { Header, List } from "../components";
 
 const Home = () => {
-    return (
-        <div className='Home'>
-            <List />
-        </div>
-    )
-}
+  return (
+    <div className="Home">
+      <List />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
