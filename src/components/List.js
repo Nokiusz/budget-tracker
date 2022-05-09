@@ -39,7 +39,6 @@ useEffect(() => {
 }, []);
 
   const handleDelete = (item) => {
-    console.log(item.id);
     const options = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -48,7 +47,7 @@ useEffect(() => {
     const newData = transactionsData.filter((transaction) => (transaction.id !== item.id));
     setTransactionsData(newData);
   };
-  
+
   const handleEdit = (item) => {
     navigate(`/edit/${item.id}`);
   };
