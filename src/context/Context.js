@@ -4,7 +4,6 @@ export const GlobalContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [transactionsData, setTransactionsData] = useState([]);
-  const [transactionData, setTransactionData] = useState([]);
   const [categoriesData, setCategoriesData] = useState([]);
   const [currenciesData, setCurrenciesData] = useState([]);
   const [prioritiesData, setPrioritiesData] = useState([]);
@@ -30,13 +29,6 @@ export const ContextProvider = ({ children }) => {
     const data = await fetch(`${BASE_URL}/transactions/list`);
     const dataJson = await data.json();
     setTransactionsData(dataJson.rows);
-  };
-
-  const fetchTransaction = async (id) => {
-    console.log(id);
-    const data = await fetch(`${BASE_URL}/transactions/list/${id}`);
-    const dataJson = await data.json();
-    setTransactionData(dataJson.rows);
   };
 
   const fetchCategories = async () => {
@@ -65,7 +57,7 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [transactionsData]);
 
   useEffect(() => {
     fetchCategories();
@@ -103,9 +95,6 @@ export const ContextProvider = ({ children }) => {
     BASE_URL,
     transactionsData,
     setTransactionsData,
-    transactionData,
-    setTransactionData,
-    fetchTransaction,
     categoriesData,
     setCategoriesData,
     typesData,

@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../context/Context";
+import { useNavigate } from "react-router-dom";
 
 import "../css/Settings.css";
 import "../css/Toggle.css";
@@ -8,6 +9,8 @@ import "../css/Toggle.css";
 const Settings = () => {
   const { showValues, setShowValues, darkMode, setDarkMode } =
     useContext(GlobalContext);
+
+    const navigate = useNavigate();
 
   const handleChange = (e) => {
     console.log(e.target.checked);
@@ -18,6 +21,7 @@ const Settings = () => {
     if (e.target.name === "darkMode") {
       setDarkMode(e.target.checked);
       localStorage.setItem("darkMode", e.target.checked);
+      navigate("/settings");
     }
   };
 

@@ -1,6 +1,6 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { List as ListAnt, Tag } from "antd";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { GlobalContext } from "../context/Context";
@@ -8,8 +8,9 @@ import { GlobalContext } from "../context/Context";
 import "antd/dist/antd.css";
 import "antd/dist/antd.less";
 
+
 const List = () => {
-  const { transactionsData, showValues } = useContext(GlobalContext);
+  const { transactionsData, showValues, setTransactionsData, BASE_URL } = useContext(GlobalContext);
   const defaultImgSrc = `${process.env.PUBLIC_URL}/img/categories/default.png`;
   const ImgSrc = `${process.env.PUBLIC_URL}/img/categories/`;
   let navigate = useNavigate();
@@ -17,7 +18,7 @@ const List = () => {
   const getPriorityColor = (p) => {
     switch (p) {
       case "low":
-        return "#gold";
+        return "gold";
 
       case "medium":
         return "orange";
@@ -33,11 +34,22 @@ const List = () => {
     }
   };
 
+useEffect(() => {
+  
+}, []);
+
   const handleDelete = (item) => {
     console.log(item.id);
+    const options = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch(`${BASE_URL}/transactions/${item.id}`, options)
+    const newData = transactionsData.filter((transaction) => (transaction.id !== item.id));
+    setTransactionsData(newData);
   };
+  
   const handleEdit = (item) => {
-    console.log(item.id);
     navigate(`/edit/${item.id}`);
   };
 
@@ -60,12 +72,8 @@ const List = () => {
                 }}
               />
             }
-            title={`${showValues ? item.value : `??? | ${item.date}`} 
-                            ${
-                              showValues
-                                ? `${item.currencyAcronym} | ${item.date}`
-                                : `??? | ${item.date}`
-                            } `}
+            title={showValues ? `${item.value} | ${item.date}` : `??? | ${item.date}`} 
+                            
             description={
               <>
                 {item.description}
