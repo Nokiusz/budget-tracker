@@ -14,7 +14,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 5000;
+const PORT = 8000;
 
 app.get('/', (req, res) => {
     res.json({ "message": "Hello There" })
