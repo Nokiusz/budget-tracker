@@ -25,9 +25,7 @@ router.get("/list/:id", (req, res) => {
             console.error(err.message);
             res.status(400).json({ "error": err.message })
         }
-        rows.forEach(row => {
-            console.log(row);
-        })
+            console.log(rows);
         res.json({ rows })
     });
 });
