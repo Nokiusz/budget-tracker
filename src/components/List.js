@@ -1,9 +1,12 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { List as ListAnt, Tag } from "antd";
+import { List as ListAnt, Modal, Space, Tag } from "antd";
 import React, { useContext, useEffect, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { GlobalContext } from "../context/Context";
+
+const { confirm } = Modal;
+
 
 const List = () => {
   const { transactionsData, showValues, setTransactionsData, BASE_URL } = useContext(GlobalContext);
@@ -30,22 +33,39 @@ const List = () => {
     }
   };
 
-useEffect(() => {
-  
-}, []);
+  function showDeleteConfirm(item) {
+    confirm({
+      title: 'Are you sure delete this transaction?',
+      icon: <DeleteOutlined />,
+      content: `
+      Transaction:
+      id: ${item.id} ${item.description}
+      will be deleted permanently`,
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        handleDelete(item);
+      },
+      onCancel() {
+
+      },
+    });
+  }
+
 
   const handleDelete = (item) => {
     const options = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     };
-    fetch(`${BASE_URL}/transactions/${item.id}`, options)
+    fetch(`${BASE_URL} / transactions / ${item.id}`, options)
     const newData = transactionsData.filter((transaction) => (transaction.id !== item.id));
     setTransactionsData(newData);
   };
 
   const handleEdit = (item) => {
-    navigate(`/edit/${item.id}`);
+    navigate(`/ edit / ${item.id}`);
   };
 
   return (
@@ -67,8 +87,8 @@ useEffect(() => {
                 }}
               />
             }
-            title={showValues ? `${item.value} | ${item.date}` : `??? | ${item.date}`} 
-                            
+            title={showValues ? `${item.value} | ${item.date}` : ` ??? | ${item.date}`}
+
             description={
               <>
                 {item.description}
@@ -90,7 +110,7 @@ useEffect(() => {
 
           <div className="actions">
             <EditOutlined key="edit" onClick={() => handleEdit(item)} />
-            <DeleteOutlined key="delete" onClick={() => handleDelete(item)} />
+            <DeleteOutlined key="delete" onClick={() => showDeleteConfirm(item)} />
           </div>
         </ListAnt.Item>
       )}
