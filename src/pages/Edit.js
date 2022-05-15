@@ -1,8 +1,10 @@
-import React, { useEffect, useContext, useState } from "react";
 import { Button, DatePicker, Form, Input, Select } from "antd";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { GlobalContext } from "../context/Context";
 import { useNavigate } from "react-router-dom";
+
+import { GlobalContext } from "../context/Context";
+
 const Edit = () => {
   const { id } = useParams();
   const [form] = Form.useForm();
@@ -71,9 +73,6 @@ const Edit = () => {
     fetchTransaction();
   }, []);
 
-  useEffect(() => {
-    console.log(transactionData);
-  }, [transactionData]);
 
   return (
     <div>
@@ -87,11 +86,7 @@ const Edit = () => {
           <Form.Item
             name="description"
             label="Description"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            rules={[{ required: true, message: 'Description is required' }]}
           >
             <Input placeholder={transactionData[0].description} />
           </Form.Item>
@@ -99,8 +94,10 @@ const Edit = () => {
             name="value"
             label="Value"
             rules={[
+              { required: true, message: 'Value is required' },
               {
-                required: true,
+                pattern: /^[0-9]?[0-9]?(\.[0-9][0-9]?)?$/,
+                message: 'Value must be a positive number',
               },
             ]}
           >
@@ -109,11 +106,7 @@ const Edit = () => {
           <Form.Item
             name="category"
             label="Category"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            rules={[{ required: true, message: 'Category is required' }]}
           >
             <Select allowClear placeholder={transactionData[0].category}>
               {categoriesData.map((category, index) => {
@@ -128,11 +121,7 @@ const Edit = () => {
           <Form.Item
             name="currency"
             label="Currency"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            rules={[{ required: true, message: 'Currency is required' }]}
           >
             <Select placeholder={transactionData[0].currency} allowClear>
               {currenciesData.map((currency, index) => {
@@ -148,11 +137,7 @@ const Edit = () => {
           <Form.Item
             name="type"
             label="Type"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            rules={[{ required: true, message: 'Type is required' }]}
           >
             <Select placeholder={transactionData[0].type} allowClear>
               {typesData.map((type, index) => {
@@ -168,11 +153,7 @@ const Edit = () => {
           <Form.Item
             name="priority"
             label="Priority"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            rules={[{ required: true, message: 'Priority is required' }]}
           >
             <Select placeholder={transactionData[0].priority} allowClear>
               {prioritiesData.map((priority, index) => {
@@ -189,11 +170,7 @@ const Edit = () => {
             name="date"
             label="Date"
             type="date"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            rules={[{ required: true, message: 'Date is required' }]}
           >
             <DatePicker format={dateFormat} onChange={onDateChange} />
           </Form.Item>

@@ -5,10 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 import { GlobalContext } from "../context/Context";
 
-import "antd/dist/antd.css";
-import "antd/dist/antd.less";
-
-
 const List = () => {
   const { transactionsData, showValues, setTransactionsData, BASE_URL } = useContext(GlobalContext);
   const defaultImgSrc = `${process.env.PUBLIC_URL}/img/categories/default.png`;

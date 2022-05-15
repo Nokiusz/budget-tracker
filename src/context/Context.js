@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useThemeSwitcher } from "react-css-theme-switcher";
 
 export const GlobalContext = createContext();
 
@@ -11,7 +12,8 @@ export const ContextProvider = ({ children }) => {
   const [incomeTotal, setIncomeTotal] = useState(0);
   const [expenseTotal, setExpenseTotal] = useState(0);
   const [showValues, setShowValues] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false)
+  const { switcher, status, themes } = useThemeSwitcher();
 
   const sumIncome = () => {
     const income = transactionsData.filter((item) => item.type === "income");
@@ -23,7 +25,7 @@ export const ContextProvider = ({ children }) => {
     setExpenseTotal(expense.reduce((acc, item) => acc + item.value, 0));
   };
 
-  const BASE_URL = "http://192.168.0.231:8000/api";
+  const BASE_URL = "http://192.168.0.157:8000/api";
 
   const fetchData = async () => {
     const data = await fetch(`${BASE_URL}/transactions/list`);
@@ -55,6 +57,17 @@ export const ContextProvider = ({ children }) => {
     setPrioritiesData(dataJson.rows);
   };
 
+  const toggleTheme = (isChecked) => {
+    console.log(isChecked)
+    localStorage.setItem("darkMode", isChecked);
+    setIsDarkMode(isChecked);
+    switcher({ theme: isChecked ? themes.dark : themes.light });
+  };
+
+  useEffect(() => {
+    toggleTheme(JSON.parse(localStorage.getItem("darkMode")));
+  }, []);
+
   useEffect(() => {
     fetchData();
   }, [transactionsData]);
@@ -83,7 +96,7 @@ export const ContextProvider = ({ children }) => {
       localStorage.setItem("darkMode", false);
     }
     setShowValues(JSON.parse(localStorage.getItem("showValues")));
-    setDarkMode(JSON.parse(localStorage.getItem("darkMode")));
+    setIsDarkMode(JSON.parse(localStorage.getItem("darkMode")));
   }, []);
 
   useEffect(() => {
@@ -109,8 +122,9 @@ export const ContextProvider = ({ children }) => {
     setExpenseTotal,
     showValues,
     setShowValues,
-    darkMode,
-    setDarkMode,
+    isDarkMode,
+    setIsDarkMode,
+    toggleTheme
   };
 
   return (

@@ -1,6 +1,7 @@
-import { Button, DatePicker, Form, Input, Select } from "antd";
-import React, { useContext } from "react";
-import { GlobalContext } from "../context/Context";
+import { Button, DatePicker, Form, Input, Select } from 'antd';
+import React, { useContext } from 'react';
+
+import { GlobalContext } from '../context/Context';
 
 const { Option } = Select;
 const layout = {
@@ -20,7 +21,7 @@ const tailLayout = {
 
 const Add = () => {
   const [form] = Form.useForm();
-  const dateFormat = "DD-MM-YYYY";
+  const dateFormat = 'DD-MM-YYYY';
   const {
     categoriesData,
     typesData,
@@ -32,8 +33,8 @@ const Add = () => {
   const onFinish = async (values) => {
     console.log(values);
     const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         description: values.description,
         value: values.value,
@@ -58,40 +59,34 @@ const Add = () => {
   };
 
   return (
-    <div className="Add">
-      <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
+    <div className='Add'>
+      <Form {...layout} form={form} name='control-hooks' onFinish={onFinish}>
         <Form.Item
-          name="description"
-          label="Description"
+          name='description'
+          label='Description'
+          rules={[{ required: true, message: 'Description is required' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name='value'
+          label='Value'
           rules={[
+            { required: true, message: 'Value is required' },
             {
-              required: true,
+              pattern: /^[0-9]?[0-9]?(\.[0-9][0-9]?)?$/,
+              message: 'Value must be a positive number',
             },
           ]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          name="value"
-          label="Value"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          name='category'
+          label='Category'
+          rules={[{ required: true, message: 'Category is required' }]}
         >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="category"
-          label="Category"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Select placeholder="Select a category" allowClear>
+          <Select placeholder='Select a category' allowClear>
             {categoriesData.map((category, index) => {
               return (
                 <Option key={index} value={category.id}>
@@ -102,15 +97,11 @@ const Add = () => {
           </Select>
         </Form.Item>
         <Form.Item
-          name="currency"
-          label="Currency"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          name='currency'
+          label='Currency'
+          rules={[{ required: true, message: 'Currency is required' }]}
         >
-          <Select placeholder="Select a currency" allowClear>
+          <Select placeholder='Select a currency' allowClear>
             {currenciesData.map((currency, index) => {
               return (
                 <Option key={index} value={currency.id}>
@@ -122,15 +113,11 @@ const Add = () => {
         </Form.Item>
 
         <Form.Item
-          name="type"
-          label="Type"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          name='type'
+          label='Type'
+          rules={[{ required: true, message: 'Type is required' }]}
         >
-          <Select placeholder="Select a type" allowClear>
+          <Select placeholder='Select a type' allowClear>
             {typesData.map((type, index) => {
               return (
                 <Option key={index} value={type.id}>
@@ -142,15 +129,11 @@ const Add = () => {
         </Form.Item>
 
         <Form.Item
-          name="priority"
-          label="Priority"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          name='priority'
+          label='Priority'
+          rules={[{ required: true, message: 'Priority is required' }]}
         >
-          <Select placeholder="Select a priority" allowClear>
+          <Select placeholder='Select a priority' allowClear>
             {prioritiesData.map((priority, index) => {
               return (
                 <Option key={index} value={priority.id}>
@@ -162,23 +145,19 @@ const Add = () => {
         </Form.Item>
         {/* datepicker */}
         <Form.Item
-          name="date"
-          label="Date"
-          type="date"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          name='date'
+          label='Date'
+          type='date'
+          rules={[{ required: true, message: 'Date is required' }]}
         >
           <DatePicker format={dateFormat} onChange={onDateChange} />
         </Form.Item>
 
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type='primary' htmlType='submit'>
             Submit
           </Button>
-          <Button htmlType="button" onClick={onReset}>
+          <Button htmlType='button' onClick={onReset}>
             Reset
           </Button>
         </Form.Item>

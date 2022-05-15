@@ -5,3 +5,27 @@
     flex-basis: 32%;
     flex-direction: column;
 }
+
+.ant-switch{
+line-height: 44px!important;
+min-width: 88px!important;
+height: 44px!important;
+}
+
+.ant-switch-handle{
+top: 4px!important;
+left: 4px !important;;
+width: 36px!important;
+height: 36px!important;
+}
+
+.ant-switch-checked .ant-switch-handle {
+    left: calc(100% - 36px - 2px)!important;
+}
+
+.ant-switch-checked .ant-switch-inner {
+    margin: 0 50px 0 14px!important;
+}
+.ant-switch-handle::before {
+border-radius: 18px!important;
+}

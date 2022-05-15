@@ -1,16 +1,17 @@
 import { useContext, useEffect } from 'react';
+import { ThemeSwitcherProvider } from "react-css-theme-switcher";
+import { useThemeSwitcher } from "react-css-theme-switcher";
 import { Route, HashRouter as Router, Routes } from 'react-router-dom';
 
 import { Nav } from './components/';
 /*Pages*/
 import Add from './pages/Add';
-import Edit from './pages/Edit';
 import Charts from './pages/Charts';
+import Edit from './pages/Edit';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 
 import './css/App.css';
-
 
 const App = () => {
 

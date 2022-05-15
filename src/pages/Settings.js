@@ -1,56 +1,38 @@
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { Switch } from "antd";
 import React from "react";
 import { useContext } from "react";
+
 import { GlobalContext } from "../context/Context";
-import { useNavigate } from "react-router-dom";
 
 import "../css/Settings.css";
-import "../css/Toggle.css";
 
 const Settings = () => {
-  const { showValues, setShowValues, darkMode, setDarkMode } =
+  const { showValues, setShowValues, toggleTheme } =
     useContext(GlobalContext);
 
-    const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    console.log(e.target.checked);
-    if (e.target.name === "showValues") {
-      setShowValues(e.target.checked);
-      localStorage.setItem("showValues", e.target.checked);
-    }
-    if (e.target.name === "darkMode") {
-      setDarkMode(e.target.checked);
-      localStorage.setItem("darkMode", e.target.checked);
-      navigate("/settings");
-    }
+  const toggleShowValues = (isChecked) => {
+    localStorage.setItem("showValues", isChecked);
+    setShowValues(isChecked);
   };
 
   return (
     <div className="Settings">
       <div className="radio-btns">
         Dark Mode
-        <label className="switch">
-          <input
-            name="darkMode"
-            type="checkbox"
-            checked={darkMode}
-            onChange={(e) => handleChange(e)}
-          />
-
-          <span className="slider"></span>
-        </label>
+        <Switch checked={JSON.parse(localStorage.getItem("darkMode"))} onChange={toggleTheme}
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+        />
         Show values
-        <label className="switch">
-          <input
-            name="showValues"
-            type="checkbox"
-            checked={showValues}
-            onChange={(e) => handleChange(e)}
-          />
-          <span className="slider"></span>
-        </label>
+        <Switch checked={JSON.parse(localStorage.getItem("showValues"))} onChange={toggleShowValues}
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+        />
+
+
       </div>
-    </div>
+    </div >
   );
 };
 

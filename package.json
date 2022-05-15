@@ -7,6 +7,7 @@
     "chart.js": "^3.7.1",
     "react": "^18.0.0",
     "react-chartjs-2": "^4.1.0",
+    "react-css-theme-switcher": "^0.3.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.3.0",
@@ -39,6 +40,13 @@
   },
   "homepage": "./",
   "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "gulp": "^4.0.2",
+    "gulp-csso": "^4.0.1",
+    "gulp-debug": "^4.0.0",
+    "gulp-less": "^5.0.0",
+    "gulp-postcss": "^9.0.1",
+    "less-plugin-npm-import": "^2.1.0",
     "visualize-react-component": "^1.0.43"
   }
 }
