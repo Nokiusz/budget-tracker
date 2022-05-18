@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { List as ListAnt, Modal, Space, Tag } from "antd";
+import { List as ListAnt, Modal, PageHeader, Space, Tag } from "antd";
 import React, { useContext, useEffect, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -65,56 +65,63 @@ const List = () => {
   };
 
   const handleEdit = (item) => {
-    navigate(`/ edit / ${item.id}`);
+    navigate(`/edit/${item.id}`);
   };
 
   return (
-    <ListAnt
-      itemLayout="horizontal"
-      dataSource={transactionsData}
-      renderItem={(item) => (
-        <ListAnt.Item actions={[]}>
-          <ListAnt.Item.Meta
-            avatar={
-              <img
-                width={32}
-                height={32}
-                src={`${ImgSrc}${item.category}.png`}
-                alt={item.category}
-                onError={(event) => {
-                  event.target.src = defaultImgSrc;
-                  event.onerror = null;
-                }}
-              />
-            }
-            title={showValues ? `${item.value} | ${item.date}` : ` ??? | ${item.date}`}
+    <>
+      <PageHeader
+        className="site-page-header"
+        title={`Transactions`}
+        subTitle={null}
+      />
+      <ListAnt
+        itemLayout="horizontal"
+        dataSource={transactionsData}
+        renderItem={(item) => (
+          <ListAnt.Item actions={[]}>
+            <ListAnt.Item.Meta
+              avatar={
+                <img
+                  width={32}
+                  height={32}
+                  src={`${ImgSrc}${item.category}.png`}
+                  alt={item.category}
+                  onError={(event) => {
+                    event.target.src = defaultImgSrc;
+                    event.onerror = null;
+                  }}
+                />
+              }
+              title={showValues ? `${item.value} | ${item.date}` : ` ??? | ${item.date}`}
 
-            description={
-              <>
-                {item.description}
-                <br />
-                <Tag>{item.category}</Tag>
-                <br />
-                {item.priority !== "none" && (
-                  <Tag color={getPriorityColor(item.priority)}>
-                    {item.priority}
+              description={
+                <>
+                  {item.description}
+                  <br />
+                  <Tag>{item.category}</Tag>
+                  <br />
+                  {item.priority !== "none" && (
+                    <Tag color={getPriorityColor(item.priority)}>
+                      {item.priority}
+                    </Tag>
+                  )}
+
+                  <Tag color={item.type === "expense" ? "red" : "green"}>
+                    {item.type}
                   </Tag>
-                )}
+                </>
+              }
+            />
 
-                <Tag color={item.type === "expense" ? "red" : "green"}>
-                  {item.type}
-                </Tag>
-              </>
-            }
-          />
-
-          <div className="actions">
-            <EditOutlined key="edit" onClick={() => handleEdit(item)} />
-            <DeleteOutlined key="delete" onClick={() => showDeleteConfirm(item)} />
-          </div>
-        </ListAnt.Item>
-      )}
-    />
+            <div className="actions">
+              <EditOutlined key="edit" onClick={() => handleEdit(item)} />
+              <DeleteOutlined key="delete" onClick={() => showDeleteConfirm(item)} />
+            </div>
+          </ListAnt.Item>
+        )}
+      />
+    </>
   );
 };
 

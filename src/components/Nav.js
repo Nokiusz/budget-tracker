@@ -1,5 +1,6 @@
+import { HomeOutlined, PieChartOutlined, SettingOutlined } from "@ant-design/icons";
+import { Menu } from "antd";
 import React from "react";
-import { FaChartPie, FaCog, FaHome, FaPlus } from "react-icons/fa";
 import { NavLink, useLocation } from "react-router-dom";
 
 import "../css/Nav.css";
@@ -7,30 +8,34 @@ import "../css/Nav.css";
 const Nav = () => {
   return (
     <nav>
-      <NavLink
-        to="/"
-        isActive={(match, location) => location.pathname === "/charts"}
-      >
-        <FaHome />
-      </NavLink>
-      <NavLink
-        to="/add"
-        isActive={(match, location) => location.pathname === "/charts"}
-      >
-        <FaPlus />
-      </NavLink>
-      <NavLink
-        to="/charts"
-        isActive={(match, location) => location.pathname === "/charts"}
-      >
-        <FaChartPie />
-      </NavLink>
-      <NavLink
-        to="/settings"
-        isActive={(match, location) => location.pathname === "/charts"}
-      >
-        <FaCog />
-      </NavLink>
+      <Menu mode="inline" defaultSelectedKeys={['mail']}>
+        <Menu.Item key="home" icon={<HomeOutlined />}>
+          <NavLink
+            to="/"
+            isActive={(match, location) => location.pathname === "/charts"}
+          >
+            Home
+          </NavLink>
+        </Menu.Item>
+
+        <Menu.Item key="charts" icon={<PieChartOutlined />}>
+          <NavLink
+            to="/charts"
+            isActive={(match, location) => location.pathname === "/charts"}
+          >
+            Charts
+          </NavLink>
+        </Menu.Item>
+
+        <Menu.Item key="settings" icon={<SettingOutlined />}>
+          <NavLink
+            to="/settings"
+            isActive={(match, location) => location.pathname === "/charts"}
+          >
+            Settings
+          </NavLink>
+        </Menu.Item>
+      </Menu>
     </nav>
   );
 };

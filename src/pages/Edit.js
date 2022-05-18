@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, Input, Select } from "antd";
+import { Button, DatePicker, Form, Input, PageHeader, Select } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -75,10 +75,14 @@ const Edit = () => {
 
 
   return (
-    <div>
-      Edit transaction {id}
-      <br />
-      {/* if isFetching or transactionData is empty */}
+    <div className="Add">
+      <PageHeader
+        className="site-page-header"
+        onBack={() => window.history.back()}
+        title={`Edit transaction ${id}`}
+        subTitle={null}
+      />
+
       {isFetching ? (
         "loading"
       ) : (
@@ -96,7 +100,7 @@ const Edit = () => {
             rules={[
               { required: true, message: 'Value is required' },
               {
-                pattern: /^[0-9]?[0-9]?(\.[0-9][0-9]?)?$/,
+                pattern: /^(?!0\d)\d*(\.\d+)?$/mg,
                 message: 'Value must be a positive number',
               },
             ]}

@@ -1,5 +1,5 @@
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import { Switch } from "antd";
+import { PageHeader, Switch } from "antd";
 import React from "react";
 import { useContext } from "react";
 
@@ -18,6 +18,12 @@ const Settings = () => {
 
   return (
     <div className="Settings">
+      <PageHeader
+        className="site-page-header"
+        onBack={() => window.history.back()}
+        title={`Settings`}
+        subTitle={null}
+      />
       <div className="radio-btns">
         Dark Mode
         <Switch checked={JSON.parse(localStorage.getItem("darkMode"))} onChange={toggleTheme}

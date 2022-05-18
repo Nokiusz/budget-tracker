@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, Input, Select } from 'antd';
+import { Button, DatePicker, Form, Input, PageHeader, Select } from 'antd';
 import React, { useContext } from 'react';
 
 import { GlobalContext } from '../context/Context';
@@ -60,6 +60,13 @@ const Add = () => {
 
   return (
     <div className='Add'>
+      <PageHeader
+        className="site-page-header"
+        onBack={() => window.history.back()}
+        title="Add transaction"
+        subTitle={null}
+      />
+
       <Form {...layout} form={form} name='control-hooks' onFinish={onFinish}>
         <Form.Item
           name='description'
@@ -74,7 +81,7 @@ const Add = () => {
           rules={[
             { required: true, message: 'Value is required' },
             {
-              pattern: /^[0-9]?[0-9]?(\.[0-9][0-9]?)?$/,
+              pattern: /^(?!0\d)\d*(\.\d+)?$/mg,
               message: 'Value must be a positive number',
             },
           ]}

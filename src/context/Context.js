@@ -70,7 +70,7 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchData();
-  }, [transactionsData]);
+  }, []);
 
   useEffect(() => {
     fetchCategories();

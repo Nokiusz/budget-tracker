@@ -2,24 +2,32 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #6730E4;
     position:fixed;
+    width: 100vw;
 	bottom:0;
 	left:0;
 	right:0;
 	z-index:1000;
-    bottom: 0;
 
 }
 
-nav a {
-    color: #46D2BC;
-    text-align: center;
-    padding: 15px 16px;
-    text-decoration: none;
+nav ul li {
+    height: 70px!important;
+    font-size: 1.2em;
+    margin-bottom: 0px;
+}
+svg {
+    font-size: 1.2em;
 }
 
-nav a.active {
-    background-color: #3cae9d;
-    color: #6730E4;
+nav ul {
+    display: flex;
+}
+
+li.ant-menu-item {
+    margin-bottom: 0px!important;
+}
+
+.ant-menu-item::after{
+    display: none;
 }

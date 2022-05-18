@@ -1,3 +1,4 @@
+import { PageHeader } from 'antd';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import React, { useContext, useEffect } from "react";
 import { Line, Pie } from "react-chartjs-2";
@@ -10,18 +11,18 @@ const Charts = () => {
   const { incomeTotal, setIncomeTotal, expenseTotal, setExpenseTotal, transactionsData } =
     useContext(GlobalContext);
 
-    const optionsPie = {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: true,
-          text: 'Pie Chart',
-        },
+  const optionsPie = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
       },
-    };
+      title: {
+        display: true,
+        text: 'Pie Chart',
+      },
+    },
+  };
   const dataPie = {
     labels: ["Income", "Expense"],
     datasets: [
@@ -78,6 +79,12 @@ const Charts = () => {
 
   return (
     <div className="Charts">
+      <PageHeader
+        className="site-page-header"
+        onBack={() => window.history.back()}
+        title={`Charts`}
+        subTitle={null}
+      />
       <Pie options={optionsPie} data={dataPie} />
       <br />
       <Line options={optionsLine} data={dataLine} />
