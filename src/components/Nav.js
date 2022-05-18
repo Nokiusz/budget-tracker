@@ -12,7 +12,7 @@ const Nav = () => {
         <Menu.Item key="home" icon={<HomeOutlined />}>
           <NavLink
             to="/"
-            isActive={(match, location) => location.pathname === "/charts"}
+            isActive={(match, location) => location.pathname === "/"}
           >
             Home
           </NavLink>
@@ -30,7 +30,7 @@ const Nav = () => {
         <Menu.Item key="settings" icon={<SettingOutlined />}>
           <NavLink
             to="/settings"
-            isActive={(match, location) => location.pathname === "/charts"}
+            isActive={(match, location) => location.pathname === "/settings"}
           >
             Settings
           </NavLink>
