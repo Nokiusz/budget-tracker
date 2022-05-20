@@ -1,15 +1,20 @@
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { List as ListAnt, Modal, PageHeader, Space, Tag } from "antd";
-import React, { useContext, useEffect, useReducer } from "react";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  PlusOutlined,
+  RedoOutlined,
+} from "@ant-design/icons";
+import { List as ListAnt, Modal, PageHeader, Button, Tag, Affix } from "antd";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { GlobalContext } from "../context/Context";
 
 const { confirm } = Modal;
 
-
 const List = () => {
-  const { transactionsData, showValues, setTransactionsData, BASE_URL } = useContext(GlobalContext);
+  const { transactionsData, showValues, setTransactionsData, BASE_URL } =
+    useContext(GlobalContext);
   const defaultImgSrc = `${process.env.PUBLIC_URL}/img/categories/default.png`;
   const ImgSrc = `${process.env.PUBLIC_URL}/img/categories/`;
   let navigate = useNavigate();
@@ -35,32 +40,35 @@ const List = () => {
 
   function showDeleteConfirm(item) {
     confirm({
-      title: 'Are you sure delete this transaction?',
+      title: "Are you sure delete this transaction?",
       icon: <DeleteOutlined />,
       content: `
       Transaction:
       id: ${item.id} ${item.description}
       will be deleted permanently`,
-      okText: 'Yes',
-      okType: 'danger',
-      cancelText: 'No',
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
       onOk() {
         handleDelete(item);
       },
-      onCancel() {
-
-      },
+      onCancel() {},
     });
   }
 
+  const handleAddRedirect = () => {
+    navigate("/add");
+  };
 
   const handleDelete = (item) => {
     const options = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     };
-    fetch(`${BASE_URL} / transactions / ${item.id}`, options)
-    const newData = transactionsData.filter((transaction) => (transaction.id !== item.id));
+    fetch(`${BASE_URL}/transactions/${item.id}`, options);
+    const newData = transactionsData.filter(
+      (transaction) => transaction.id !== item.id
+    );
     setTransactionsData(newData);
   };
 
@@ -68,13 +76,34 @@ const List = () => {
     navigate(`/edit/${item.id}`);
   };
 
+  const handleReload = () => {
+    window.location.reload();
+  };
+
   return (
     <>
       <PageHeader
         className="site-page-header"
         title={`Transactions`}
-        subTitle={null}
+        subTitle={
+          <Button
+            className="add-button"
+            onClick={handleReload}
+            shape="circle"
+            icon={<RedoOutlined />}
+          />
+        }
+        extra={
+          <Affix offsetTop={20}>
+            <Button
+              onClick={handleAddRedirect}
+              shape="circle"
+              icon={<PlusOutlined />}
+            />
+          </Affix>
+        }
       />
+
       <ListAnt
         itemLayout="horizontal"
         dataSource={transactionsData}
@@ -93,8 +122,11 @@ const List = () => {
                   }}
                 />
               }
-              title={showValues ? `${item.value} | ${item.date}` : ` ??? | ${item.date}`}
-
+              title={
+                showValues
+                  ? `${item.value} | ${item.date}`
+                  : ` ??? | ${item.date}`
+              }
               description={
                 <>
                   {item.description}
@@ -116,7 +148,10 @@ const List = () => {
 
             <div className="actions">
               <EditOutlined key="edit" onClick={() => handleEdit(item)} />
-              <DeleteOutlined key="delete" onClick={() => showDeleteConfirm(item)} />
+              <DeleteOutlined
+                key="delete"
+                onClick={() => showDeleteConfirm(item)}
+              />
             </div>
           </ListAnt.Item>
         )}

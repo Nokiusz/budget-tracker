@@ -1,4 +1,9 @@
-import { HomeOutlined, PieChartOutlined, SettingOutlined } from "@ant-design/icons";
+import {
+  HomeOutlined,
+  PieChartOutlined,
+  SettingOutlined,
+  FilterOutlined,
+} from "@ant-design/icons";
 import { Menu } from "antd";
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
@@ -8,31 +13,40 @@ import "../css/Nav.css";
 const Nav = () => {
   return (
     <nav>
-      <Menu mode="inline" defaultSelectedKeys={['mail']}>
-        <Menu.Item key="home" icon={<HomeOutlined />}>
+      <Menu mode="inline" defaultSelectedKeys={["123"]}>
+        <Menu.Item key="home">
           <NavLink
             to="/"
             isActive={(match, location) => location.pathname === "/"}
           >
-            Home
+            <HomeOutlined />
           </NavLink>
         </Menu.Item>
 
-        <Menu.Item key="charts" icon={<PieChartOutlined />}>
+        <Menu.Item key="charts">
           <NavLink
             to="/charts"
             isActive={(match, location) => location.pathname === "/charts"}
           >
-            Charts
+            <PieChartOutlined />
           </NavLink>
         </Menu.Item>
 
-        <Menu.Item key="settings" icon={<SettingOutlined />}>
+        <Menu.Item key="filters">
+          <NavLink
+            to="/filters"
+            isActive={(match, location) => location.pathname === "/filters"}
+          >
+            <FilterOutlined />
+          </NavLink>
+        </Menu.Item>
+
+        <Menu.Item key="settings">
           <NavLink
             to="/settings"
             isActive={(match, location) => location.pathname === "/settings"}
           >
-            Settings
+            <SettingOutlined />
           </NavLink>
         </Menu.Item>
       </Menu>

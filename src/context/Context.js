@@ -25,12 +25,13 @@ export const ContextProvider = ({ children }) => {
     setExpenseTotal(expense.reduce((acc, item) => acc + item.value, 0));
   };
 
-  const BASE_URL = "http://192.168.0.157:8000/api";
+  const BASE_URL = "http://192.168.0.231:8000/api";
 
   const fetchData = async () => {
     const data = await fetch(`${BASE_URL}/transactions/list`);
     const dataJson = await data.json();
     setTransactionsData(dataJson.rows);
+    console.log('test')
   };
 
   const fetchCategories = async () => {

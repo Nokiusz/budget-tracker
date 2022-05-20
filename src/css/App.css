@@ -28,8 +28,26 @@ li {
 .Home,
 .Add,
 .Charts,
-.Settings {
+.Settings,
+.Filters {
   padding: 6px;
+}
+
+button.ant-btn.ant-btn-circle.ant-btn-default.ant-btn-icon-only:focus,
+button.ant-btn.ant-btn-circle.ant-btn-default.ant-btn-icon-only:active {
+  animation: spin 1s infinite linear !important;
+}
+
+.add-button {
+  animation: xd 1s infinite linear !important;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .ant-picker.ant-picker-status-success.ant-picker-focused {
   width: 100%;
@@ -67,6 +85,10 @@ li {
   height: 100%;
 }
 
-.ant-tag{
+.ant-tag {
   margin-bottom: 3px;
+}
+
+.Filters {
+  text-align: center;
 }
