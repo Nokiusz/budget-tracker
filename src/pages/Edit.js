@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, Input, PageHeader, Select } from "antd";
+import { Button, DatePicker, Form, Input, PageHeader, Select, notification } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -41,6 +41,15 @@ const Edit = () => {
     console.log(dateString);
   };
 
+
+  const openNotificationWithIcon = type => {
+    notification[type]({
+      message: 'Transaction edited',
+      description:
+        '',
+    });
+  };
+
   const onFinish = async (values) => {
     console.log(values);
     const options = {
@@ -58,6 +67,7 @@ const Edit = () => {
     };
     await fetch(`${BASE_URL}/transactions/${id}`, options);
     //await fetchData();
+    openNotificationWithIcon('success');
     navigate("/");
   };
 

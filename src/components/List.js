@@ -4,7 +4,7 @@ import {
   PlusOutlined,
   RedoOutlined,
 } from "@ant-design/icons";
-import { List as ListAnt, Modal, PageHeader, Button, Tag, Affix } from "antd";
+import { List as ListAnt, Modal, PageHeader, Button, Tag, Affix, notification } from "antd";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -60,6 +60,14 @@ const List = () => {
     navigate("/add");
   };
 
+  const openNotificationWithIcon = type => {
+    notification[type]({
+      message: 'Transaction deleted',
+      description:
+        '',
+    });
+  };
+
   const handleDelete = (item) => {
     const options = {
       method: "DELETE",
@@ -70,6 +78,8 @@ const List = () => {
       (transaction) => transaction.id !== item.id
     );
     setTransactionsData(newData);
+    
+    openNotificationWithIcon('warning')
   };
 
   const handleEdit = (item) => {

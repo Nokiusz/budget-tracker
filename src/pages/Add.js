@@ -1,4 +1,12 @@
-import { Button, DatePicker, Form, Input, PageHeader, Select } from "antd";
+import {
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  PageHeader,
+  Select,
+  notification,
+} from "antd";
 import React, { useContext } from "react";
 
 import { GlobalContext } from "../context/Context";
@@ -30,6 +38,12 @@ const Add = () => {
     fetchData,
     BASE_URL,
   } = useContext(GlobalContext);
+  const openNotificationWithIcon = (type) => {
+    notification[type]({
+      message: "Transaction added",
+      description: "",
+    });
+  };
 
   const onFinish = async (values) => {
     console.log(values);
@@ -48,8 +62,8 @@ const Add = () => {
     };
 
     await fetch(`${BASE_URL}/transactions`, options);
+    openNotificationWithIcon("success");
     window.history.back();
-
   };
 
   const onReset = () => {

@@ -107,6 +107,7 @@ export const ContextProvider = ({ children }) => {
 
   const providerValue = {
     BASE_URL,
+    fetchData,
     transactionsData,
     setTransactionsData,
     categoriesData,
