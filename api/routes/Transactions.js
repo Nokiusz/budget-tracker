@@ -5,7 +5,7 @@ const db = require('../db');
 /*TRANSACTIONS */
 /* GET */
 router.get("/list", (req, res) => {
-    const query = `SELECT tr.id, tr.description, tr.value, c.name AS 'category', cur.name AS 'currency',cur.symbol AS 'currencySymbol',cur.acronym AS 'currencyAcronym' , tp.name AS 'type', p.name AS 'priority', tr.date FROM 'transaction' AS 'tr', 'type' AS 'tp', 'category' AS 'c', 'priority' AS 'p', 'currency' AS 'cur' WHERE tr.categoryID = c.id AND tr.currencyId = cur.id AND tr.typeID = tp.id AND tr.priorityId = p.id;`;
+    const query = `SELECT tr.id, c.id AS 'categoryID', cur.id AS 'currencyID', p.id AS 'priorityID', tp.id AS 'typeID', tr.description, tr.value, c.name AS 'category', cur.name AS 'currency',cur.symbol AS 'currencySymbol',cur.acronym AS 'currencyAcronym' , tp.name AS 'type', p.name AS 'priority', tr.date FROM 'transaction' AS 'tr', 'type' AS 'tp', 'category' AS 'c', 'priority' AS 'p', 'currency' AS 'cur' WHERE tr.categoryID = c.id AND tr.currencyId = cur.id AND tr.typeID = tp.id AND tr.priorityId = p.id;`;
     db.all(query, [], (err, rows) => {
         if (err) {
             console.error(err.message);

@@ -2,7 +2,6 @@
 
 # Instalacja projektu lokalnie
 
-##
 
 ```bash
 git clone https://github.com/Nokiusz/budget-tracker.git

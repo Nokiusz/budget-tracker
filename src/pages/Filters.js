@@ -4,19 +4,44 @@ import { GlobalContext } from "../context/Context";
 import { RedoOutlined } from "@ant-design/icons";
 const Filters = () => {
   const { transactionsData, setTransactionsData } = useContext(GlobalContext);
-
+  const sortByField = (e) => {
+    const value = e.target.value;
+    console.log(value);
+    let sortedTransactionsData;
+    if (value === "category") {
+      sortedTransactionsData = transactionsData.sort((a, b) => {
+        return a.categoryID - b.categoryID;
+      });
+    }
+    if (value === "priority") {
+      sortedTransactionsData = transactionsData.sort((a, b) => {
+        return a.priorityID - b.priorityID;
+      });
+    }
+    if (value === "type") {
+      sortedTransactionsData = transactionsData.sort((a, b) => {
+        return a.typeID - b.typeID;
+      });
+    }
+    if (value === "currency") {
+      sortedTransactionsData = transactionsData.sort((a, b) => {
+        return a.currencyID - b.currencyID;
+      });
+    }
+    setTransactionsData(sortedTransactionsData);
+  };
   const sortValues = (e) => {
     const value = e.target.value;
     console.log(value);
     let sortedTransactionsData;
     if (value === "asc") {
       sortedTransactionsData = transactionsData.sort((a, b) => {
-        return a.value - b.value;
+        return a.valueID - b.valueID;
       });
     }
     if (value === "dsc") {
       sortedTransactionsData = transactionsData.sort((a, b) => {
-        return b.value - a.value;
+        return b.valueID - a.valueID;
       });
     }
     console.log(sortedTransactionsData);
@@ -98,7 +123,7 @@ const Filters = () => {
       </div>
       <div>
         <p>Sort Transactions by:</p>
-        <Radio.Group defaultValue="" buttonStyle="solid">
+        <Radio.Group defaultValue="" buttonStyle="solid" onChange={sortByField}>
           <Radio.Button value="category">Category</Radio.Button>
           <Radio.Button value="priority">Priority</Radio.Button>
           <Radio.Button value="type">Type</Radio.Button>

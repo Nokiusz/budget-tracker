@@ -4,7 +4,7 @@ import {
   PlusOutlined,
   RedoOutlined,
 } from "@ant-design/icons";
-import { List as ListAnt, Modal, PageHeader, Button, Tag, Affix, notification } from "antd";
+import { List as ListAnt, Modal, PageHeader, Button, Tag, Affix, notification, Skeleton } from "antd";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ import { GlobalContext } from "../context/Context";
 const { confirm } = Modal;
 
 const List = () => {
-  const { transactionsData, showValues, setTransactionsData, BASE_URL } =
+  const { transactionsData, showValues, setTransactionsData,isLoading, BASE_URL } =
     useContext(GlobalContext);
   const defaultImgSrc = `${process.env.PUBLIC_URL}/img/categories/default.png`;
   const ImgSrc = `${process.env.PUBLIC_URL}/img/categories/`;
@@ -113,7 +113,7 @@ const List = () => {
           </Affix>
         }
       />
-
+<Skeleton loading={isLoading}>
       <ListAnt
         itemLayout="horizontal"
         dataSource={transactionsData}
@@ -166,6 +166,7 @@ const List = () => {
           </ListAnt.Item>
         )}
       />
+    </Skeleton>
     </>
   );
 };

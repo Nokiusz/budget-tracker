@@ -12,6 +12,7 @@ export const ContextProvider = ({ children }) => {
   const [incomeTotal, setIncomeTotal] = useState(0);
   const [expenseTotal, setExpenseTotal] = useState(0);
   const [showValues, setShowValues] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false)
   const { switcher, status, themes } = useThemeSwitcher();
 
@@ -25,13 +26,15 @@ export const ContextProvider = ({ children }) => {
     setExpenseTotal(expense.reduce((acc, item) => acc + item.value, 0));
   };
 
-  const BASE_URL = "http://192.168.0.231:8000/api";
+  const BASE_URL = "http://192.168.0.139:8000/api";
 
   const fetchData = async () => {
+    setIsLoading(true);
     const data = await fetch(`${BASE_URL}/transactions/list`);
     const dataJson = await data.json();
     setTransactionsData(dataJson.rows);
     console.log('test')
+    setIsLoading(false);
   };
 
   const fetchCategories = async () => {
@@ -126,7 +129,9 @@ export const ContextProvider = ({ children }) => {
     setShowValues,
     isDarkMode,
     setIsDarkMode,
-    toggleTheme
+    toggleTheme,
+    isLoading, 
+    setIsLoading
   };
 
   return (
