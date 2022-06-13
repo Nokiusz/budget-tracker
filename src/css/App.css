@@ -92,3 +92,23 @@ button.ant-btn.ant-btn-circle.ant-btn-default.ant-btn-icon-only:active {
 .Filters {
   text-align: center;
 }
+
+.attachment{
+  width: 100%;
+  height: 100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.attachment svg{
+  fill:red;
+}
+.rightSide{
+  display:flex;
+  justify-content:space-around;
+  flex-direction: row;
+  align-items:center;
+  gap: 16px;
+}

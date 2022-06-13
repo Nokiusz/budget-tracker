@@ -50,7 +50,7 @@ router.post("/", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-    const query = `DELETE FROM 'attachment' WHERE id = ${req.params.id}`;
+    const query = `DELETE FROM 'attachment' WHERE transactionId = ${req.params.id}`;
     db.all(query, (err, rows) => {
         if (err) {
             console.error(err.message);

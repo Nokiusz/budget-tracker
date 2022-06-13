@@ -1,6 +1,16 @@
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, DatePicker, Form, Input, message, notification, PageHeader, Select, Upload } from "antd";
-import ImgCrop from 'antd-img-crop';
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import {
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  message,
+  notification,
+  PageHeader,
+  Select,
+  Upload,
+} from "antd";
+import ImgCrop from "antd-img-crop";
 import React, { useContext, useState, useEffect } from "react";
 
 import { GlobalContext } from "../context/Context";
@@ -22,7 +32,6 @@ const tailLayout = {
 };
 
 const Add = () => {
-
   const [form] = Form.useForm();
   const dateFormat = "DD-MM-YYYY";
   const {
@@ -44,9 +53,8 @@ const Add = () => {
 
   useEffect(() => {
     fetchLastTransactionID();
-
   }, []);
-  console.log('last', lastTransactionID)
+  console.log("last", lastTransactionID);
   const onFinish = async (values) => {
     const options = {
       method: "POST",
@@ -61,9 +69,10 @@ const Add = () => {
         date: values.date.format(dateFormat),
       }),
     };
-    callApi(options)
+    callApi(options);
 
     openNotificationWithIcon("success");
+    window.history.back();
   };
 
   const callApi = async (trOpt) => {
@@ -75,14 +84,13 @@ const Add = () => {
         transactionId: lastTransactionID[0].id + 1,
       }),
     };
-    const trReq = await fetch(`${BASE_URL}/transactions`, trOpt)
-    const attReq = await fetch(`${BASE_URL}/attachments`, optionsAtt)
+
+
+ 
+    const trReq = await fetch(`${BASE_URL}/transactions`, trOpt);
+    const attReq = await fetch(`${BASE_URL}/attachments`, optionsAtt);
+  
   };
-
-  const sendFile = async () => {
-
-
-  }
 
   const onReset = () => {
     form.resetFields();
@@ -96,23 +104,21 @@ const Add = () => {
     setTimeout(() => {
       onSuccess("ok");
     }, 0);
-  }
+  };
 
-  const getAttachmentFile = e => {
+  const getAttachmentFile = (e) => {
     if (Array.isArray(e)) {
       return e;
     }
     return e && e.fileList[0];
   };
 
-  const [fileList, setFileList] = useState([
-  ]);
+  const [fileList, setFileList] = useState([]);
 
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
-    console.log(newFileList)
+    console.log(newFileList);
   };
-
 
   return (
     <div className="Add">
@@ -122,8 +128,6 @@ const Add = () => {
         title="Add transaction"
         subTitle={null}
       />
-
-
 
       <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
         <Form.Item
@@ -217,21 +221,16 @@ const Add = () => {
         >
           <DatePicker format={dateFormat} onChange={onDateChange} />
         </Form.Item>
-        <Form.Item
-          name="attachment"
-          getValueFromEvent={getAttachmentFile}
-        >
+        <Form.Item name="attachment" getValueFromEvent={getAttachmentFile}>
           <ImgCrop rotate>
             <Upload
-              accept='image/png'
+              accept="image/png"
               customRequest={dummyRequest}
               listType="picture-card"
               className="avatar-uploader"
               onChange={onChange}
             >
-
-              {(fileList) && fileList.length !== 1 && '+ Upload'}
-
+              {fileList && fileList.length !== 1 && "+ Upload"}
             </Upload>
           </ImgCrop>
         </Form.Item>

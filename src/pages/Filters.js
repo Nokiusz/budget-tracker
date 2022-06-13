@@ -105,6 +105,21 @@ const Filters = () => {
     window.location.reload();
   };
 
+  const showOnlyAttachments = (e) => {
+    const value = e.target.value;
+    console.log(value);
+    let filteredTransactionsData;
+    if (value === "true") {
+      filteredTransactionsData = transactionsData.filter((item) => {
+        return item.attUrl;
+      });
+      if (value === "false") {
+        console.log("false");
+      }
+    }
+    setTransactionsData(filteredTransactionsData);
+  }
+
   return (
     <div className="Filters">
       <div>
@@ -152,6 +167,13 @@ const Filters = () => {
         <Radio.Group defaultValue="" buttonStyle="solid" onChange={showOnly}>
           <Radio.Button value="income">Income</Radio.Button>
           <Radio.Button value="expense">Expense</Radio.Button>
+        </Radio.Group>
+      </div>
+      <div>
+      <br />
+        <p>Attachment list</p>
+        <Radio.Group defaultValue="" buttonStyle="solid" onChange={showOnlyAttachments}>
+          <Radio.Button value="true">True</Radio.Button>
         </Radio.Group>
       </div>
     </div>

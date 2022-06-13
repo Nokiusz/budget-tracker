@@ -37,6 +37,9 @@ npm run watch
 - Wyświetlenie w formie wykresu wydatków z danego miesiąca i/lub kategorii,
 - Nadanie wydatkom priorytetu,
 - Sortowanie wydatków (np. po kategorii/walucie/typie).
+- Dodawanie załącznika do wydatku – zdjęcia paragonu,
+- Usunięcie załącznikaz wydatku, 
+- Wyświetlenie listy podglądu załącznika przypisanego do wydatku.
 - Darkmode, ukrywanie wartości
 
 # Dokumentacja REST API:

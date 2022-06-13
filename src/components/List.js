@@ -3,8 +3,19 @@ import {
   EditOutlined,
   PlusOutlined,
   RedoOutlined,
+  StopOutlined,
 } from "@ant-design/icons";
-import { List as ListAnt, Modal, PageHeader, Button, Tag, Affix, notification, Skeleton, Avatar } from "antd";
+import {
+  List as ListAnt,
+  Modal,
+  PageHeader,
+  Button,
+  Tag,
+  Affix,
+  notification,
+  Skeleton,
+  Image,
+} from "antd";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,8 +24,13 @@ import { GlobalContext } from "../context/Context";
 const { confirm } = Modal;
 
 const List = () => {
-  const { transactionsData, showValues, setTransactionsData, isLoading, BASE_URL } =
-    useContext(GlobalContext);
+  const {
+    transactionsData,
+    showValues,
+    setTransactionsData,
+    isLoading,
+    BASE_URL,
+  } = useContext(GlobalContext);
   const defaultImgSrc = `${process.env.PUBLIC_URL}/img/categories/default.png`;
   const ImgSrc = `${process.env.PUBLIC_URL}/img/categories/`;
   let navigate = useNavigate();
@@ -52,7 +68,22 @@ const List = () => {
       onOk() {
         handleDelete(item);
       },
-      onCancel() { },
+      onCancel() {},
+    });
+  }
+
+  function showDeleteConfirmAtt(item) {
+    confirm({
+      title: "Are you sure delete this attachment?",
+      icon: <DeleteOutlined />,
+      content: `
+      Attachment from
+      id: ${item.id} 
+      will be deleted permanently`,
+      onOk() {
+        deleteAttachment(item);
+      },
+      onCancel() {},
     });
   }
 
@@ -60,11 +91,17 @@ const List = () => {
     navigate("/add");
   };
 
-  const openNotificationWithIcon = type => {
+  const openNotificationWithIcon = (type) => {
     notification[type]({
-      message: 'Transaction deleted',
-      description:
-        '',
+      message: "Transaction deleted",
+      description: "",
+    });
+  };
+
+  const openNotificationWithIconAtt = (type) => {
+    notification[type]({
+      message: "Attachment deleted",
+      description: "",
     });
   };
 
@@ -79,7 +116,7 @@ const List = () => {
     );
     setTransactionsData(newData);
 
-    openNotificationWithIcon('warning')
+    openNotificationWithIconAtt("warning");
   };
 
   const handleEdit = (item) => {
@@ -89,6 +126,20 @@ const List = () => {
   const handleReload = () => {
     window.location.reload();
   };
+
+  const deleteAttachment = (item) => {
+    const options = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch(`${BASE_URL}/attachments/${item.id}`, options);
+    const newData = transactionsData.filter(
+      (transaction) => transaction.id !== item.attId
+    );
+    setTransactionsData(newData);
+
+    openNotificationWithIcon("warning");
+  }
 
   return (
     <>
@@ -152,18 +203,26 @@ const List = () => {
                     <Tag color={item.type === "expense" ? "red" : "green"}>
                       {item.type}
                     </Tag>
-                    {item.attUrl && (<Avatar size={50} src={item.attUrl} />)}
                   </>
                 }
               />
+              <div className="rightSide">
+                <div className="attachment">
+                  {item.attUrl && (
+                    <>
+                      <StopOutlined onClick={()=>showDeleteConfirmAtt(item)}/>
+                      <Image height={50} width={50} src={item.attUrl} />
+                    </>
+                  )}
+                </div>
 
-
-              <div className="actions">
-                <EditOutlined key="edit" onClick={() => handleEdit(item)} />
-                <DeleteOutlined
-                  key="delete"
-                  onClick={() => showDeleteConfirm(item)}
-                />
+                <div className="actions">
+                  <EditOutlined key="edit" onClick={() => handleEdit(item)} />
+                  <DeleteOutlined
+                    key="delete"
+                    onClick={() => showDeleteConfirm(item)}
+                  />
+                </div>
               </div>
             </ListAnt.Item>
           )}
