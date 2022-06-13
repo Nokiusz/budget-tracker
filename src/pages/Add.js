@@ -69,7 +69,13 @@ const Add = () => {
         date: values.date.format(dateFormat),
       }),
     };
-    callApi(options);
+    if(fileList.length === 0){
+      const trReq = await fetch(`${BASE_URL}/transactions`, options);
+    }
+    else{
+      callApi(options);
+    }
+  
 
     openNotificationWithIcon("success");
     window.history.back();
@@ -85,11 +91,9 @@ const Add = () => {
       }),
     };
 
-
- 
     const trReq = await fetch(`${BASE_URL}/transactions`, trOpt);
-    const attReq = await fetch(`${BASE_URL}/attachments`, optionsAtt);
-  
+      const attReq = await fetch(`${BASE_URL}/attachments`, optionsAtt);
+    
   };
 
   const onReset = () => {
