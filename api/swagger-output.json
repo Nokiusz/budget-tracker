@@ -542,6 +542,91 @@
           }
         }
       }
+    },
+    
+"/api/attachments/": {
+  "get": {
+    "description": "",
+    "parameters": [],
+    "tags": ["attachment"],
+    "responses": {
+      "200": {
+        "description": "OK"
+      },
+      "400": {
+        "description": "Bad Request"
+      }
+    }
+  },
+  "post": {
+    "description": "",
+    "parameters": [
+      {
+        "url": "body",
+        "transactionId": "body",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "example": "any"
+            },
+            "transactionId": {
+              "example": "any"
+            }
+
+          }
+        }
+      }
+    ],
+    "tags": ["attachment"],
+    "responses": {
+      "200": {
+        "description": "OK"
+      },
+      "400": {
+        "description": "Bad Request"
+      }
+    }
+  },
+  "delete": {
+    "description": "",
+    "parameters": [],
+    "tags": ["attachment"],
+    "responses": {
+      "200": {
+        "description": "OK"
+      },
+      "400": {
+        "description": "Bad Request"
+      }
+    }
+  }
+},
+"/api/attachments/{id}": {
+  "get": {
+    "description": "",
+    "tags": ["attachment"],
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK"
+      },
+      "400": {
+        "description": "Bad Request"
+      }
     }
   }
 }
+  }
+}
+
+
+
+

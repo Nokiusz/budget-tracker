@@ -8,7 +8,7 @@ router.get("/:id", (req, res) => {
     const query = `SELECT * FROM 'category' WHERE id = ${req.params.id}`;
     db.all(query, (err, rows) => {
         if (err) {
-            console.error(err.message);
+
             res.status(400).json({ "error": err.message })
         }
         console.log(rows);
@@ -20,7 +20,7 @@ router.get("/name/:name", (req, res) => {
     const query = `SELECT * FROM 'category' WHERE name = '${req.params.name}'`;
     db.all(query, (err, rows) => {
         if (err) {
-            console.error(err.message);
+
             res.status(400).json({ "error": err.message })
         }
         console.log(rows);
@@ -32,7 +32,7 @@ router.get("/", (req, res) => {
     const query = `SELECT * FROM 'category'`;
     db.all(query, [], (err, rows) => {
         if (err) {
-            console.error(err.message);
+
             res.status(400).json({ "error": err.message })
         }
         rows.forEach(row => {
@@ -49,7 +49,7 @@ router.post("/", (req, res, next) => {
         [name],
         (err, result) => {
             if (err) {
-                console.error(err.message);
+
                 res.status(400).json({ "error": err.message })
             }
             res.status(201).json({
@@ -62,7 +62,6 @@ router.delete("/:id", (req, res) => {
     const query = `DELETE FROM 'category' WHERE id = ${req.params.id}`;
     db.all(query, (err, rows) => {
         if (err) {
-            console.error(err.message);
             res.status(400).json({ "error": err.message })
         }
         res.status(201).json({
@@ -80,10 +79,9 @@ router.put("/:id", (req, res, next) => {
 
         (err, result) => {
             if (err) {
-                console.error(err.message);
                 res.status(400).json({ "error": err.message })
             }
-            res.status(201).json({
+            res.status(200).json({
                 "message": `Category updated`,
             })
         });

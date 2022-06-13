@@ -8,6 +8,7 @@ export const ContextProvider = ({ children }) => {
   const [categoriesData, setCategoriesData] = useState([]);
   const [currenciesData, setCurrenciesData] = useState([]);
   const [prioritiesData, setPrioritiesData] = useState([]);
+  const [lastTransactionID, setLastTransactionID] = useState();
   const [typesData, setTypesData] = useState([]);
   const [incomeTotal, setIncomeTotal] = useState(0);
   const [expenseTotal, setExpenseTotal] = useState(0);
@@ -26,7 +27,7 @@ export const ContextProvider = ({ children }) => {
     setExpenseTotal(expense.reduce((acc, item) => acc + item.value, 0));
   };
 
-  const BASE_URL = "http://192.168.0.139:8000/api";
+  const BASE_URL = "http://192.168.0.157:8000/api";
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -36,6 +37,13 @@ export const ContextProvider = ({ children }) => {
     console.log('test')
     setIsLoading(false);
   };
+
+  const fetchLastTransactionID = async () => {
+    const data = await fetch(`${BASE_URL}/lastTransaction`);
+    const dataJson = await data.json();
+    setLastTransactionID(dataJson.rows);
+  }
+
 
   const fetchCategories = async () => {
     const data = await fetch(`${BASE_URL}/Categories`);
@@ -78,6 +86,10 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    fetchLastTransactionID();
   }, []);
 
   useEffect(() => {
@@ -130,8 +142,11 @@ export const ContextProvider = ({ children }) => {
     isDarkMode,
     setIsDarkMode,
     toggleTheme,
-    isLoading, 
-    setIsLoading
+    isLoading,
+    setIsLoading,
+    fetchLastTransactionID,
+    lastTransactionID,
+    setLastTransactionID
   };
 
   return (

@@ -1,13 +1,7 @@
-import {
-  Button,
-  DatePicker,
-  Form,
-  Input,
-  PageHeader,
-  Select,
-  notification,
-} from "antd";
-import React, { useContext } from "react";
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { Button, DatePicker, Form, Input, message, notification, PageHeader, Select, Upload } from "antd";
+import ImgCrop from 'antd-img-crop';
+import React, { useContext, useState, useEffect } from "react";
 
 import { GlobalContext } from "../context/Context";
 
@@ -28,6 +22,7 @@ const tailLayout = {
 };
 
 const Add = () => {
+
   const [form] = Form.useForm();
   const dateFormat = "DD-MM-YYYY";
   const {
@@ -36,6 +31,8 @@ const Add = () => {
     currenciesData,
     prioritiesData,
     fetchData,
+    lastTransactionID,
+    fetchLastTransactionID,
     BASE_URL,
   } = useContext(GlobalContext);
   const openNotificationWithIcon = (type) => {
@@ -45,8 +42,12 @@ const Add = () => {
     });
   };
 
+  useEffect(() => {
+    fetchLastTransactionID();
+
+  }, []);
+  console.log('last', lastTransactionID)
   const onFinish = async (values) => {
-    console.log(values);
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -60,11 +61,28 @@ const Add = () => {
         date: values.date.format(dateFormat),
       }),
     };
+    callApi(options)
 
-    await fetch(`${BASE_URL}/transactions`, options);
     openNotificationWithIcon("success");
-    window.history.back();
   };
+
+  const callApi = async (trOpt) => {
+    const optionsAtt = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        url: fileList[0].thumbUrl,
+        transactionId: lastTransactionID[0].id + 1,
+      }),
+    };
+    const trReq = await fetch(`${BASE_URL}/transactions`, trOpt)
+    const attReq = await fetch(`${BASE_URL}/attachments`, optionsAtt)
+  };
+
+  const sendFile = async () => {
+
+
+  }
 
   const onReset = () => {
     form.resetFields();
@@ -74,6 +92,28 @@ const Add = () => {
     console.log(dateString);
   };
 
+  const dummyRequest = async ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess("ok");
+    }, 0);
+  }
+
+  const getAttachmentFile = e => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e && e.fileList[0];
+  };
+
+  const [fileList, setFileList] = useState([
+  ]);
+
+  const onChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+    console.log(newFileList)
+  };
+
+
   return (
     <div className="Add">
       <PageHeader
@@ -82,6 +122,8 @@ const Add = () => {
         title="Add transaction"
         subTitle={null}
       />
+
+
 
       <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
         <Form.Item
@@ -175,7 +217,24 @@ const Add = () => {
         >
           <DatePicker format={dateFormat} onChange={onDateChange} />
         </Form.Item>
+        <Form.Item
+          name="attachment"
+          getValueFromEvent={getAttachmentFile}
+        >
+          <ImgCrop rotate>
+            <Upload
+              accept='image/png'
+              customRequest={dummyRequest}
+              listType="picture-card"
+              className="avatar-uploader"
+              onChange={onChange}
+            >
 
+              {(fileList) && fileList.length !== 1 && '+ Upload'}
+
+            </Upload>
+          </ImgCrop>
+        </Form.Item>
         <Form.Item {...tailLayout}>
           <div className="buttons-add">
             <Button type="primary" htmlType="submit">

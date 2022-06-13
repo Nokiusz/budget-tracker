@@ -4,7 +4,7 @@ import {
   PlusOutlined,
   RedoOutlined,
 } from "@ant-design/icons";
-import { List as ListAnt, Modal, PageHeader, Button, Tag, Affix, notification, Skeleton } from "antd";
+import { List as ListAnt, Modal, PageHeader, Button, Tag, Affix, notification, Skeleton, Avatar } from "antd";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ import { GlobalContext } from "../context/Context";
 const { confirm } = Modal;
 
 const List = () => {
-  const { transactionsData, showValues, setTransactionsData,isLoading, BASE_URL } =
+  const { transactionsData, showValues, setTransactionsData, isLoading, BASE_URL } =
     useContext(GlobalContext);
   const defaultImgSrc = `${process.env.PUBLIC_URL}/img/categories/default.png`;
   const ImgSrc = `${process.env.PUBLIC_URL}/img/categories/`;
@@ -52,7 +52,7 @@ const List = () => {
       onOk() {
         handleDelete(item);
       },
-      onCancel() {},
+      onCancel() { },
     });
   }
 
@@ -78,7 +78,7 @@ const List = () => {
       (transaction) => transaction.id !== item.id
     );
     setTransactionsData(newData);
-    
+
     openNotificationWithIcon('warning')
   };
 
@@ -113,60 +113,62 @@ const List = () => {
           </Affix>
         }
       />
-<Skeleton loading={isLoading}>
-      <ListAnt
-        itemLayout="horizontal"
-        dataSource={transactionsData}
-        renderItem={(item) => (
-          <ListAnt.Item actions={[]}>
-            <ListAnt.Item.Meta
-              avatar={
-                <img
-                  width={32}
-                  height={32}
-                  src={`${ImgSrc}${item.category}.png`}
-                  alt={item.category}
-                  onError={(event) => {
-                    event.target.src = defaultImgSrc;
-                    event.onerror = null;
-                  }}
-                />
-              }
-              title={
-                showValues
-                  ? `${item.value} | ${item.date}`
-                  : ` ??? | ${item.date}`
-              }
-              description={
-                <>
-                  {item.description}
-                  <br />
-                  <Tag>{item.category}</Tag>
-                  <br />
-                  {item.priority !== "none" && (
-                    <Tag color={getPriorityColor(item.priority)}>
-                      {item.priority}
+      <Skeleton loading={isLoading}>
+        <ListAnt
+          itemLayout="horizontal"
+          dataSource={transactionsData}
+          renderItem={(item) => (
+            <ListAnt.Item actions={[]}>
+              <ListAnt.Item.Meta
+                avatar={
+                  <img
+                    width={32}
+                    height={32}
+                    src={`${ImgSrc}${item.category}.png`}
+                    alt={item.category}
+                    onError={(event) => {
+                      event.target.src = defaultImgSrc;
+                      event.onerror = null;
+                    }}
+                  />
+                }
+                title={
+                  showValues
+                    ? `${item.value} | ${item.date}`
+                    : ` ??? | ${item.date}`
+                }
+                description={
+                  <>
+                    {item.description}
+                    <br />
+                    <Tag>{item.category}</Tag>
+                    <br />
+                    {item.priority !== "none" && (
+                      <Tag color={getPriorityColor(item.priority)}>
+                        {item.priority}
+                      </Tag>
+                    )}
+
+                    <Tag color={item.type === "expense" ? "red" : "green"}>
+                      {item.type}
                     </Tag>
-                  )}
-
-                  <Tag color={item.type === "expense" ? "red" : "green"}>
-                    {item.type}
-                  </Tag>
-                </>
-              }
-            />
-
-            <div className="actions">
-              <EditOutlined key="edit" onClick={() => handleEdit(item)} />
-              <DeleteOutlined
-                key="delete"
-                onClick={() => showDeleteConfirm(item)}
+                    {item.attUrl && (<Avatar size={50} src={item.attUrl} />)}
+                  </>
+                }
               />
-            </div>
-          </ListAnt.Item>
-        )}
-      />
-    </Skeleton>
+
+
+              <div className="actions">
+                <EditOutlined key="edit" onClick={() => handleEdit(item)} />
+                <DeleteOutlined
+                  key="delete"
+                  onClick={() => showDeleteConfirm(item)}
+                />
+              </div>
+            </ListAnt.Item>
+          )}
+        />
+      </Skeleton>
     </>
   );
 };
