@@ -1,1 +1,121 @@
-<?xml version="1.0" encoding="UTF-8"?><svg id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 516.73 488.22"><defs><style>.cls-1{fill:#fff;}.cls-2{font-family:ArialMT, Arial;}.cls-2,.cls-3{font-size:12.01px;}.cls-2,.cls-3,.cls-4{isolation:isolate;}.cls-5{stroke-miterlimit:10;}.cls-5,.cls-6{fill:none;stroke:#000;}.cls-3,.cls-4{font-family:Arial-BoldMT, Arial;}.cls-4{font-size:13.01px;}.cls-6{stroke-miterlimit:4;stroke-width:1px;}</style></defs><rect class="cls-1" width="516.73" height="488.22"/><g><text class="cls-3" transform="translate(198.96 449.24)"><tspan x="0" y="0">aplikacje-mobilne.db</tspan></text><g id="node1"><path class="cls-6" d="M308.73,296.07h120.12c6.01,0,12.01-6.01,12.01-12.01V135.91c0-6.01-6.01-12.01-12.01-12.01h-120.12c-6.01,0-12.01,6.01-12.01,12.01v148.14c0,6.01,6.01,12.01,12.01,12.01"/><text class="cls-4" transform="translate(332.75 144.32)"><tspan x="0" y="0">transaction</tspan></text><line class="cls-6" x1="296.72" y1="153.93" x2="440.86" y2="153.93"/><text class="cls-2" transform="translate(303.72 167.54)"><tspan x="0" y="0">id*</tspan></text><text class="cls-3" transform="translate(321.74 167.54)"><tspan x="0" y="0">integer</tspan></text><text class="cls-2" transform="translate(303.72 184.56)"><tspan x="0" y="0">description</tspan></text><text class="cls-3" transform="translate(365.78 184.56)"><tspan x="0" y="0">text</tspan></text><text class="cls-2" transform="translate(303.72 201.58)"><tspan x="0" y="0">value</tspan></text><text class="cls-3" transform="translate(336.76 201.58)"><tspan x="0" y="0">real</tspan></text><text class="cls-2" transform="translate(303.72 218.59)"><tspan x="0" y="0">categoryId</tspan></text><text class="cls-3" transform="translate(362.78 218.59)"><tspan x="0" y="0">integer</tspan></text><text class="cls-2" transform="translate(303.72 235.61)"><tspan x="0" y="0">currencyId</tspan></text><text class="cls-3" transform="translate(362.78 235.61)"><tspan x="0" y="0">integer</tspan></text><text class="cls-2" transform="translate(303.72 252.62)"><tspan x="0" y="0">typeId</tspan></text><text class="cls-3" transform="translate(339.76 252.62)"><tspan x="0" y="0">integer</tspan></text><text class="cls-2" transform="translate(303.72 269.64)"><tspan x="0" y="0">priorityId</tspan></text><text class="cls-3" transform="translate(352.77 269.64)"><tspan x="0" y="0">integer</tspan></text><text class="cls-2" transform="translate(303.72 286.66)"><tspan x="0" y="0">date</tspan></text><text class="cls-3" transform="translate(330.75 286.66)"><tspan x="0" y="0">text</tspan></text></g><g id="node2"><path class="cls-6" d="M308.73,104.53h120.12c6.01,0,12.01-6.01,12.01-12.01V46.48c0-6.01-6.01-12.01-12.01-12.01h-120.12c-6.01,0-12.01,6.01-12.01,12.01v46.04c0,6.01,6.01,12.01,12.01,12.01"/><text class="cls-4" transform="translate(340.76 54.89)"><tspan x="0" y="0">category</tspan></text><line class="cls-6" x1="296.72" y1="64.49" x2="440.86" y2="64.49"/><text class="cls-2" transform="translate(303.72 78.11)"><tspan x="0" y="0">id*</tspan></text><text class="cls-3" transform="translate(321.74 78.11)"><tspan x="0" y="0">integer</tspan></text><text class="cls-2" transform="translate(303.72 95.12)"><tspan x="0" y="0">name</tspan></text><text class="cls-3" transform="translate(337.76 95.12)"><tspan x="0" y="0">text</tspan></text></g><g id="node3"><path class="cls-6" d="M308.73,402.52h120.12c6.01,0,12.01-6.01,12.01-12.01v-63.06c0-6.01-6.01-12.01-12.01-12.01h-120.12c-6.01,0-12.01,6.01-12.01,12.01v63.06c0,6.01,6.01,12.01,12.01,12.01"/><text class="cls-4" transform="translate(345.76 335.85)"><tspan x="0" y="0">priority</tspan></text><line class="cls-6" x1="296.72" y1="345.46" x2="440.86" y2="345.46"/><text class="cls-2" transform="translate(303.72 359.58)"><tspan x="0" y="0">id*</tspan></text><text class="cls-3" transform="translate(321.74 359.58)"><tspan x="0" y="0">integer</tspan></text><text class="cls-2" transform="translate(303.72 376.59)"><tspan x="0" y="0">value</tspan></text><text class="cls-3" transform="translate(336.76 376.59)"><tspan x="0" y="0">integer</tspan></text><text class="cls-2" transform="translate(303.72 393.61)"><tspan x="0" y="0">name</tspan></text><text class="cls-3" transform="translate(337.76 393.61)"><tspan x="0" y="0">text</tspan></text></g><g id="node4"><path class="cls-6" d="M101.9,386.01h120.12c6.01,0,12.01-6.01,12.01-12.01v-46.04c0-6.01-6.01-12.01-12.01-12.01H101.9c-6.01,0-12.01,6.01-12.01,12.01v46.04c0,6.01,6.01,12.01,12.01,12.01"/><text class="cls-4" transform="translate(147.94 336.36)"><tspan x="0" y="0">type</tspan></text><line class="cls-6" x1="89.88" y1="345.97" x2="234.02" y2="345.97"/><text class="cls-2" transform="translate(96.89 359.58)"><tspan x="0" y="0">id*</tspan></text><text class="cls-3" transform="translate(114.91 359.58)"><tspan x="0" y="0">integer</tspan></text><text class="cls-2" transform="translate(96.89 376.6)"><tspan x="0" y="0">name</tspan></text><text class="cls-3" transform="translate(130.92 376.6)"><tspan x="0" y="0">text</tspan></text></g><g id="node5"><path class="cls-6" d="M101.9,210.85h120.12c6.01,0,12.01-6.01,12.01-12.01V118.76c0-6.01-6.01-12.01-12.01-12.01H101.9c-6.01,0-12.01,6.01-12.01,12.01v80.08c0,6.01,6.01,12.01,12.01,12.01"/><text class="cls-4" transform="translate(132.93 127.17)"><tspan x="0" y="0">currency</tspan></text><line class="cls-6" x1="89.88" y1="136.78" x2="234.02" y2="136.78"/><text class="cls-2" transform="translate(96.89 150.39)"><tspan x="0" y="0">id*</tspan></text><text class="cls-3" transform="translate(114.91 150.39)"><tspan x="0" y="0">integer</tspan></text><text class="cls-2" transform="translate(96.89 167.41)"><tspan x="0" y="0">name</tspan></text><text class="cls-3" transform="translate(130.92 167.41)"><tspan x="0" y="0">text</tspan></text><text class="cls-2" transform="translate(96.89 184.42)"><tspan x="0" y="0">symbol</tspan></text><text class="cls-3" transform="translate(138.93 184.42)"><tspan x="0" y="0">text</tspan></text><text class="cls-2" transform="translate(96.89 201.44)"><tspan x="0" y="0">acronym</tspan></text><text class="cls-3" transform="translate(145.94 201.44)"><tspan x="0" y="0">text</tspan></text></g><g><polyline class="cls-5" points="296.72 354.63 280.91 354.63 280.91 266.33 295.63 266.33"/><polygon points="292.32 270.42 291.64 269.69 295.25 266.33 291.64 262.98 292.32 262.24 296.72 266.33 292.32 270.42"/></g><g><polyline class="cls-5" points="89.88 354.63 75.87 354.63 75.87 249.74 295.63 249.74"/><polygon points="292.32 253.83 291.64 253.1 295.25 249.74 291.64 246.38 292.32 245.65 296.72 249.74 292.32 253.83"/></g><g><polyline class="cls-5" points="89.88 144.49 75.87 144.49 75.87 231.96 295.63 231.96"/><polygon points="292.32 236.05 291.64 235.32 295.25 231.96 291.64 228.61 292.32 227.87 296.72 231.96 292.32 236.05"/></g><g><polyline class="cls-5" points="296.72 73.74 280.91 73.74 280.91 214.78 295.63 214.78"/><polygon points="292.32 218.87 291.64 218.13 295.25 214.78 291.64 211.42 292.32 210.69 296.72 214.78 292.32 218.87"/></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 723.9 488.2" style="enable-background:new 0 0 723.9 488.2;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{font-family:'Arial-BoldMT';}
+	.st2{font-size:12.01px;}
+	.st3{fill:none;stroke:#000000;}
+	.st4{font-size:13.01px;}
+	.st5{font-family:'ArialMT';}
+	.st6{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st7{fill:none;stroke:#1D1D1B;stroke-miterlimit:10;}
+	.st8{fill:#1D1D1B;}
+</style>
+<rect class="st0" width="723.9" height="488.2"/>
+<text transform="matrix(1 0 0 1 302.5485 449.24)" class="st1 st2">aplikacje-mobilne.db</text>
+<g id="node1">
+	<path class="st3" d="M308.7,296.1h120.1c6,0,12-6,12-12V135.9c0-6-6-12-12-12H308.7c-6,0-12,6-12,12V284
+		C296.7,290.1,302.7,296.1,308.7,296.1"/>
+	<text transform="matrix(1 0 0 1 332.75 144.32)" class="st1 st4">transaction</text>
+	<line class="st3" x1="296.7" y1="153.9" x2="440.9" y2="153.9"/>
+	<text transform="matrix(1 0 0 1 303.72 167.54)" class="st5 st2">id*</text>
+	<text transform="matrix(1 0 0 1 321.74 167.54)" class="st1 st2">integer</text>
+	<text transform="matrix(1 0 0 1 303.72 184.56)" class="st5 st2">description</text>
+	<text transform="matrix(1 0 0 1 365.78 184.56)" class="st1 st2">text</text>
+	<text transform="matrix(1 0 0 1 303.72 201.58)" class="st5 st2">value</text>
+	<text transform="matrix(1 0 0 1 336.76 201.58)" class="st1 st2">real</text>
+	<text transform="matrix(1 0 0 1 303.72 218.59)" class="st5 st2">categoryId</text>
+	<text transform="matrix(1 0 0 1 362.78 218.59)" class="st1 st2">integer</text>
+	<text transform="matrix(1 0 0 1 303.72 235.61)" class="st5 st2">currencyId</text>
+	<text transform="matrix(1 0 0 1 362.78 235.61)" class="st1 st2">integer</text>
+	<text transform="matrix(1 0 0 1 303.72 252.62)" class="st5 st2">typeId</text>
+	<text transform="matrix(1 0 0 1 339.76 252.62)" class="st1 st2">integer</text>
+	<text transform="matrix(1 0 0 1 303.72 269.64)" class="st5 st2">priorityId</text>
+	<text transform="matrix(1 0 0 1 352.77 269.64)" class="st1 st2">integer</text>
+	<text transform="matrix(1 0 0 1 303.72 286.66)" class="st5 st2">date</text>
+	<text transform="matrix(1 0 0 1 330.75 286.66)" class="st1 st2">text</text>
+</g>
+<g id="node2">
+	<path class="st3" d="M308.7,104.5h120.1c6,0,12-6,12-12v-46c0-6-6-12-12-12H308.7c-6,0-12,6-12,12v46
+		C296.7,98.5,302.7,104.5,308.7,104.5"/>
+	<text transform="matrix(1 0 0 1 340.76 54.89)" class="st1 st4">category</text>
+	<line class="st3" x1="296.7" y1="64.5" x2="440.9" y2="64.5"/>
+	<text transform="matrix(1 0 0 1 303.72 78.11)" class="st5 st2">id*</text>
+	<text transform="matrix(1 0 0 1 321.74 78.11)" class="st1 st2">integer</text>
+	<text transform="matrix(1 0 0 1 303.72 95.12)" class="st5 st2">name</text>
+	<text transform="matrix(1 0 0 1 337.76 95.12)" class="st1 st2">text</text>
+</g>
+<g id="node3">
+	<path class="st3" d="M308.7,402.5h120.1c6,0,12-6,12-12v-63.1c0-6-6-12-12-12H308.7c-6,0-12,6-12,12v63.1
+		C296.7,396.5,302.7,402.5,308.7,402.5"/>
+	<text transform="matrix(1 0 0 1 345.76 335.85)" class="st1 st4">priority</text>
+	<line class="st3" x1="296.7" y1="345.5" x2="440.9" y2="345.5"/>
+	<text transform="matrix(1 0 0 1 303.72 359.58)" class="st5 st2">id*</text>
+	<text transform="matrix(1 0 0 1 321.74 359.58)" class="st1 st2">integer</text>
+	<text transform="matrix(1 0 0 1 303.72 376.59)" class="st5 st2">value</text>
+	<text transform="matrix(1 0 0 1 336.76 376.59)" class="st1 st2">integer</text>
+	<text transform="matrix(1 0 0 1 303.72 393.61)" class="st5 st2">name</text>
+	<text transform="matrix(1 0 0 1 337.76 393.61)" class="st1 st2">text</text>
+</g>
+<g id="node4">
+	<path class="st3" d="M101.9,386H222c6,0,12-6,12-12v-46c0-6-6-12-12-12H101.9c-6,0-12,6-12,12v46C89.9,380,95.9,386,101.9,386"/>
+	<text transform="matrix(1 0 0 1 147.94 336.36)" class="st1 st4">type</text>
+	<line class="st3" x1="89.9" y1="346" x2="234" y2="346"/>
+	<text transform="matrix(1 0 0 1 96.89 359.58)" class="st5 st2">id*</text>
+	<text transform="matrix(1 0 0 1 114.91 359.58)" class="st1 st2">integer</text>
+	<text transform="matrix(1 0 0 1 96.89 376.6)" class="st5 st2">name</text>
+	<text transform="matrix(1 0 0 1 130.92 376.6)" class="st1 st2">text</text>
+</g>
+<g id="node5">
+	<path class="st3" d="M101.9,210.9H222c6,0,12-6,12-12v-80.1c0-6-6-12-12-12H101.9c-6,0-12,6-12,12v80.1
+		C89.9,204.8,95.9,210.8,101.9,210.9"/>
+	<text transform="matrix(1 0 0 1 132.93 127.17)" class="st1 st4">currency</text>
+	<line class="st3" x1="89.9" y1="136.8" x2="234" y2="136.8"/>
+	<text transform="matrix(1 0 0 1 96.89 150.39)" class="st5 st2">id*</text>
+	<text transform="matrix(1 0 0 1 114.91 150.39)" class="st1 st2">integer</text>
+	<text transform="matrix(1 0 0 1 96.89 167.41)" class="st5 st2">name</text>
+	<text transform="matrix(1 0 0 1 130.92 167.41)" class="st1 st2">text</text>
+	<text transform="matrix(1 0 0 1 96.89 184.42)" class="st5 st2">symbol</text>
+	<text transform="matrix(1 0 0 1 138.93 184.42)" class="st1 st2">text</text>
+	<text transform="matrix(1 0 0 1 96.89 201.44)" class="st5 st2">acronym</text>
+	<text transform="matrix(1 0 0 1 145.94 201.44)" class="st1 st2">text</text>
+</g>
+<g>
+	<polyline class="st6" points="296.7,354.6 280.9,354.6 280.9,266.3 295.6,266.3 	"/>
+	<polygon points="292.3,270.4 291.6,269.7 295.2,266.3 291.6,263 292.3,262.2 296.7,266.3 	"/>
+</g>
+<g>
+	<polyline class="st6" points="89.9,354.6 75.9,354.6 75.9,249.7 295.6,249.7 	"/>
+	<polygon points="292.3,253.8 291.6,253.1 295.2,249.7 291.6,246.4 292.3,245.6 296.7,249.7 	"/>
+</g>
+<g>
+	<polyline class="st6" points="89.9,144.5 75.9,144.5 75.9,232 295.6,232 	"/>
+	<polygon points="292.3,236.1 291.6,235.3 295.2,232 291.6,228.6 292.3,227.9 296.7,232 	"/>
+</g>
+<g>
+	<polyline class="st6" points="296.7,73.7 280.9,73.7 280.9,214.8 295.6,214.8 	"/>
+	<polygon points="292.3,218.9 291.6,218.1 295.2,214.8 291.6,211.4 292.3,210.7 296.7,214.8 	"/>
+</g>
+<g>
+	<path class="st3" d="M495.3,258.3h120.1c6,0,12-6,12-12v-63.1c0-6-6-12-12-12H495.3c-6,0-12,6-12,12v63.1
+		C483.3,252.3,489.3,258.3,495.3,258.3"/>
+	<text transform="matrix(1 0 0 1 520.6735 191.5597)" class="st1 st4">attachment</text>
+	<line class="st3" x1="483.9" y1="201.2" x2="628" y2="201.2"/>
+	<text transform="matrix(1 0 0 1 487.8204 214.7798)" class="st5 st2">id*</text>
+	<text transform="matrix(1 0 0 1 505.8405 214.7798)" class="st1 st2">integer</text>
+	<text transform="matrix(1 0 0 1 563.2897 248.9418)" class="st1 st2">integer</text>
+	<text transform="matrix(1 0 0 1 487.8204 231.7998)" class="st5 st2">url</text>
+	<text transform="matrix(1 0 0 1 506.7048 231.7998)" class="st1 st2">blob</text>
+	<text transform="matrix(1 0 0 1 487.8204 248.8097)" class="st5 st2">transactionId</text>
+</g>
+<g>
+	<g>
+		<polyline class="st7" points="296.7,164.1 288.8,164.1 288.8,114.8 475.4,114.8 475.4,210 475.4,245.6 482.2,245.6 		"/>
+		<g>
+			<polygon class="st8" points="478.9,249.7 478.2,249 481.8,245.7 478.2,242.3 478.9,241.6 483.3,245.7 			"/>
+		</g>
+	</g>
+</g>
+</svg>
