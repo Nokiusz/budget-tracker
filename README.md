@@ -126,6 +126,14 @@ GET    "/api/priorities/:id" => zwraca pojedyńczy priorytet o danym id
 GET    "/api/priorities/name/:name" => zwraca pojedyńczy priorytet o danej nazwie
 ```
 
+#### Załączniki
+
+```js
+GET    "/api/attachments" => zwraca obiekt zawierający wszystkie załączniki
+GET    "/api/attachments/:id" => zwraca pojedyńczy załącznik o danym id
+POST    "/api/attachments" => dodaje załącznik
+```
+
 #### Dokumentacja Endpointów (Swagger)
 
 ```json
@@ -142,7 +150,8 @@ GET    "/api/priorities/name/:name" => zwraca pojedyńczy priorytet o danej nazw
 
 # Frontend
 
-Warstwa frontendowa aplikacji została napisana za pomocą języka `JavaScript` wraz z biblioteką `React.js`. Style aplikacji opierają się na systemie projektowania (Design system) `Ant Design`
+Warstwa frontendowa aplikacji została napisana za pomocą języka `JavaScript` wraz z biblioteką `React.js`. Style aplikacji opierają się na systemie projektowania (Design system) `Ant Design`. 
+Aplikacja składa się z kilku "ekranów": Ekran głowny (Lista tranzakcji), Ekran dodawania nowej tranzakcji, Ekran edycji wybranej tranzakcji, Ekran wykresów, Ekran wyboru filtrów i Ekran ustawień. 
 # Diagram Frontend
 
 ![Frontend DIAGRAM](./public/fe.svg)

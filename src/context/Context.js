@@ -27,7 +27,7 @@ export const ContextProvider = ({ children }) => {
     setExpenseTotal(expense.reduce((acc, item) => acc + item.value, 0));
   };
 
-  const BASE_URL = "http://192.168.0.139:8000/api";
+  const BASE_URL = "http://192.168.0.157:8000/api";
 
   const fetchData = async () => {
     setIsLoading(true);

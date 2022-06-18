@@ -1,17 +1,27 @@
-import { PageHeader } from "antd";
+import { DatePicker, PageHeader } from "antd";
 import { Chart as ChartJS, registerables } from "chart.js";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Line, Pie } from "react-chartjs-2";
 
 import { GlobalContext } from "../context/Context";
 
+const { RangePicker } = DatePicker;
+
 ChartJS.register(...registerables);
 
 const Charts = () => {
+  const [dates, setDates] = useState([new Date().toISOString().slice(0, 10), new Date().toISOString().slice(0, 10)]);
+  console.log(dates)
   const { incomeTotal, expenseTotal, transactionsData, categoriesData } =
     useContext(GlobalContext);
 
-  const optionsPie = {
+
+  const handleChange = (e) => {
+    const startDate = e[0]._d.toLocaleDateString('en-GB').split('/').join('-');
+    const endDate = e[1]._d.toLocaleDateString('en-GB').split('/').join('-');
+    setDates([startDate, endDate])
+  }
+  const optionsPie1 = {
     responsive: true,
     plugins: {
       legend: {
@@ -19,15 +29,28 @@ const Charts = () => {
       },
       title: {
         display: true,
-        text: "Pie Chart",
+        text: "Income/Expense Ratio",
       },
     },
   };
 
-  const categoryColors = ['#FAAD14', '#CF1322', '#ff0000', '#000000','#096DD9', '#4CAE50'
+  const optionsPie2 = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Category income ratio",
+      },
+    },
+  };
+
+  const categoryColors = ['#FAAD14', '#CF1322', '#ff0000', '#000000', '#096DD9', '#4CAE50'
   ];
 
-//get total values of each category and push it to an array
+  //get total values of each category and push it to an array
   const categoryTotals = [];
   categoriesData.forEach((category) => {
     const categoryTotal = transactionsData.reduce(
@@ -81,9 +104,35 @@ const Charts = () => {
       },
     },
   };
+  let filteredTransactionsData
 
+  useEffect(() => {
+    const dateRange = transactionsData.map((item) => item.date).sort()
+    if (dates[0] !== new Date().toISOString().slice(0, 10) && dates[1] !== new Date().toISOString().slice(0, 10)) {
+      //create a new array with transactions that transactions date dateRange[0].date and dateRange[dateRange.lenght-1].date
+      filteredTransactionsData = transactionsData.filter((item) => {
+        if (dateRange[0].date <= item.date && dateRange[dateRange.lenght - 1].date >= item.date) {
+          return item;
+        }
+
+      })
+
+    }
+  }, [dates]);
+  console.log("filtered", filteredTransactionsData)
+
+
+  const labels = dates[0] === new Date().toISOString().slice(0, 10) && dates[1] === new Date().toISOString().slice(0, 10) ? transactionsData.map((item) => item.date).sort() : transactionsData.map((item) => item.date).sort().filter((item) => {
+    if (item >= dates[0] && item <= dates[1]) {
+      return item;
+    }
+  }
+  )
+
+
+  console.log(labels)
   const dataLine = {
-    labels: transactionsData.map((item) => item.date),
+    labels: labels,
     datasets: [
       {
         label: "Income",
@@ -104,7 +153,7 @@ const Charts = () => {
     ],
   };
 
-  //
+
 
   return (
     <div className="Charts">
@@ -114,10 +163,11 @@ const Charts = () => {
         title={`Charts`}
         subTitle={null}
       />
-      <Pie options={optionsPie} data={dataPie} />
+      <Pie options={optionsPie1} data={dataPie} />
       <br />
-      <Pie options={optionsPie} data={dataCategoryPie} />
+      <Pie options={optionsPie2} data={dataCategoryPie} />
       <br />
+      <RangePicker onChange={(e) => handleChange(e)} />
       <Line options={optionsLine} data={dataLine} />
     </div>
   );
