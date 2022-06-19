@@ -2,7 +2,6 @@
 
 # Instalacja projektu lokalnie
 
-
 ```bash
 git clone https://github.com/Nokiusz/budget-tracker.git
 cd budget-tracker
@@ -36,11 +35,13 @@ npm run watch
 - Usunięcie wydatku/przychodu z listy,
 - Wyświetlenie w formie wykresu wydatków z danego miesiąca i/lub kategorii,
 - Nadanie wydatkom priorytetu,
-- Sortowanie wydatków (np. po kategorii/walucie/typie).
+- Sortowanie wydatków (np. po kategorii/walucie/typie),
 - Dodawanie załącznika do wydatku – zdjęcia paragonu,
-- Usunięcie załącznikaz wydatku, 
-- Wyświetlenie listy podglądu załącznika przypisanego do wydatku.
-- Darkmode, ukrywanie wartości
+- Usunięcie załącznikaz wydatku,
+- Wyświetlenie listy załączników, 
+- podgląd załącznika przypisanego do wydatku,
+- Darkmode, ukrywanie wartości.
+<div style="page-break-after: always;"></div>
 
 # Dokumentacja REST API:
 
@@ -140,19 +141,41 @@ POST    "/api/attachments" => dodaje załącznik
 "/docs" => Dokumentacja API oraz możliwość wykonania żądań z poziomu przeglądarki
 ```
 
+<div style="page-break-after: always;"></div>
+
 # Diagram API
 
 ![API DIAGRAM](./public/api.svg)
+
+<div style="page-break-after: always;"></div>
 
 # Diagram Bazy danych
 
 ![DB DIAGRAM](./public/db.svg)
 
+<div style="page-break-after: always;"></div>
+
 # Frontend
 
-Warstwa frontendowa aplikacji została napisana za pomocą języka `JavaScript` wraz z biblioteką `React.js`. Style aplikacji opierają się na systemie projektowania (Design system) `Ant Design`. 
-Aplikacja składa się z kilku "ekranów": Ekran głowny (Lista tranzakcji), Ekran dodawania nowej tranzakcji, Ekran edycji wybranej tranzakcji, Ekran wykresów, Ekran wyboru filtrów i Ekran ustawień. 
+Warstwa frontendowa aplikacji została napisana za pomocą języka `JavaScript` wraz z biblioteką `React.js`.
+
+Style aplikacji opierają się na systemie projektowania (Design system) `Ant Design`.
+
+Aplikacja składa się z kilku "ekranów":
+
+- Ekran głowny (Lista tranzakcji),
+- Ekran dodawania nowej tranzakcji,
+- Ekran edycji wybranej tranzakcji,
+- Ekran wykresów,
+- Ekran wyboru filtrów,
+- Ekran ustawień.
+
+Przełączanie pomiędzy ekranami jest realizowane poprzez menu umiejscowione na dole ekranu.
+
+Stan aplikacji zarządzany jest poprzez wbudowane w Reacta `Context API` przechowywane w nim są pobierane dane oraz niektóre funkcje.
+
+<div style="page-break-after: always;"></div>
+
 # Diagram Frontend
 
 ![Frontend DIAGRAM](./public/fe.svg)
-
