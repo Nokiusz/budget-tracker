@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const os = require('os')
 /* Routes */
 const transactionsRoute = require('./routes/Transactions');
 const categoriesRoute = require('./routes/Categories');
@@ -42,10 +43,20 @@ app.get("/api/lastTransaction", (req, res) => {
         res.json({ rows })
     });
 });
+const networkInterfaces = os.networkInterfaces();
+const ip = networkInterfaces.Ethernet[1].address;
+
+
+//save ip variable to a json file in key "ip"
+const fs = require('fs');
+const data = { ip };
+fs.writeFileSync('../public/ip.json', JSON.stringify(data));
+
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`http://localhost:${PORT}/`);
+    console.log('local ip:', ip);
 });
 
 /* ERROR IF ENDPOINT DOES NOT EXIST */

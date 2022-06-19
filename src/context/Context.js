@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import { useThemeSwitcher } from "react-css-theme-switcher";
-
 export const GlobalContext = createContext();
 
 export const ContextProvider = ({ children }) => {
@@ -15,6 +14,7 @@ export const ContextProvider = ({ children }) => {
   const [showValues, setShowValues] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false)
+  const [ip, setIp] = useState('')
   const { switcher, status, themes } = useThemeSwitcher();
 
   const sumIncome = () => {
@@ -27,14 +27,26 @@ export const ContextProvider = ({ children }) => {
     setExpenseTotal(expense.reduce((acc, item) => acc + item.value, 0));
   };
 
-  const BASE_URL = "http://192.168.0.157:8000/api";
+  const getIp = async () => {
+    fetch("./ip.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setIp(data.ip);
+        console.log(data.ip);
+      });
+  }
+
+  const LOCAL_IP = ip;
+  console.log(LOCAL_IP);
+
+  const BASE_URL = `http://${LOCAL_IP}:8000/api`;
+  console.log(BASE_URL);
 
   const fetchData = async () => {
     setIsLoading(true);
     const data = await fetch(`${BASE_URL}/transactions/list`);
     const dataJson = await data.json();
     setTransactionsData(dataJson.rows);
-    console.log('test')
     setIsLoading(false);
   };
 
@@ -76,33 +88,38 @@ export const ContextProvider = ({ children }) => {
     switcher({ theme: isChecked ? themes.dark : themes.light });
   };
 
+
+
+
   useEffect(() => {
     toggleTheme(JSON.parse(localStorage.getItem("darkMode")));
   }, []);
 
+
+  useEffect(() => { getIp() }, [ip]);
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [ip]);
 
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [ip]);
 
   useEffect(() => {
     fetchLastTransactionID();
-  }, []);
+  }, [ip]);
 
   useEffect(() => {
     fetchTypes();
-  }, []);
+  }, [ip]);
 
   useEffect(() => {
     fetchCurrencies();
-  }, []);
+  }, [ip]);
 
   useEffect(() => {
     fetchPriorities();
-  }, []);
+  }, [ip]);
 
   useEffect(() => {
     if (localStorage.getItem("showValues") === null) {
