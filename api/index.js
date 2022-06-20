@@ -43,11 +43,23 @@ app.get("/api/lastTransaction", (req, res) => {
     res.json({ rows });
   });
 });
-const networkInterfaces = os.networkInterfaces(); 
+const networkInterfaces = os.networkInterfaces();
 console.log(networkInterfaces);
-const ip = networkInterfaces.Ethernet
-  ? networkInterfaces.Ethernet[1].address
-  : networkInterfaces.en0[1].address;
+
+const getInterface = (networkInterfaces) => {
+  let int;
+  if ("Ethernet" in networkInterfaces) {
+    int = networkInterfaces.Ethernet[1].address;
+  } else if ("en0" in networkInterfaces) {
+    int = networkInterfaces.en0[1].address;
+  }
+  else if ("Wi-Fi" in networkInterfaces) {
+    int = networkInterfaces['Wi-Fi'][1].address;
+  }
+  return int
+};
+
+const ip = getInterface(networkInterfaces);
 
 //save ip variable to a json file in key "ip"
 const fs = require("fs");
